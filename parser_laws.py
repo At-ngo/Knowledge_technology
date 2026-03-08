@@ -18,10 +18,10 @@ def extract_text_from_docx(path):
 
 
 # =========================
-# 2. TÁCH CHƯƠNG 
+# 2. TÁCH CHƯƠNG
 # =========================
 def split_chapters(text):
-    pattern = r"\nChương\s+([IVXLCDM]+|\d+)"
+    pattern = r"\n(?:Chương|CHƯƠNG)\s+([IVXLCDM]+|\d+)"
     matches = list(re.finditer(pattern, text))
 
     if not matches:
@@ -77,7 +77,7 @@ def split_articles(text):
 # 4. TÁCH KHOẢN
 # =========================
 def split_clauses(article_text):
-    pattern = r"\n(\d+)\.\s"
+    pattern = r"(?:^|\n)(\d+)\.\s"
     parts = re.split(pattern, article_text)
 
     if len(parts) <= 1:
@@ -96,19 +96,22 @@ def split_clauses(article_text):
 # 5. TÁCH ĐIỂM
 # =========================
 def split_points(clause_text):
-    pattern = r"\n([a-zđ])\)\s"
+
+    pattern = r"(?:^|\n)([a-zđ])\)\s"
     parts = re.split(pattern, clause_text)
 
     if len(parts) <= 1:
-        return [(None, clause_text.strip())]
+        return None, [(None, clause_text.strip())]
 
+    intro = parts[0].strip()
     points = []
+
     for i in range(1, len(parts), 2):
         point_letter = parts[i]
         point_content = parts[i + 1].strip()
         points.append((point_letter, point_content))
 
-    return points
+    return intro, points
 
 
 # =========================
@@ -134,8 +137,63 @@ def process_law(file_path, law_name):
 
             for clause_number, clause_content in clauses:
 
-                points = split_points(clause_content)
+                intro, points = split_points(clause_content)
 
+                # =========================
+                # CLAUSE NO POINT
+                # =========================
+                if points == [(None, clause_content.strip())]:
+
+                    content_clean = (
+                        clause_content
+                        .replace("/.", "")
+                        .replace("\n", " ")
+                        .strip()
+                    )
+
+                    uid = f"{law_name}_{chapter_number or '0'}_{article_number or '0'}_{clause_number or '0'}"
+
+                    results.append({
+                        "id": uid,
+                        "law": law_name,
+                        "chapter": chapter_number or "",
+                        "article": article_number or "",
+                        "article_title": article_title or "",
+                        "clause": clause_number or "",
+                        "point": "",
+                        "content": content_clean
+                    })
+
+                    continue
+
+                # =========================
+                # CLAUSE INTRO
+                # =========================
+                if intro:
+
+                    content_clean = (
+                        intro
+                        .replace("/.", "")
+                        .replace("\n", " ")
+                        .strip()
+                    )
+
+                    uid = f"{law_name}_{chapter_number or '0'}_{article_number or '0'}_{clause_number or '0'}_0"
+
+                    results.append({
+                        "id": uid,
+                        "law": law_name,
+                        "chapter": chapter_number or "",
+                        "article": article_number or "",
+                        "article_title": article_title or "",
+                        "clause": clause_number or "",
+                        "point": "",
+                        "content": content_clean
+                    })
+
+                # =========================
+                # POINTS
+                # =========================
                 for point_letter, point_content in points:
 
                     content_clean = (
@@ -145,7 +203,7 @@ def process_law(file_path, law_name):
                         .strip()
                     )
 
-                    uid = f"{law_name}_{chapter_number or '0'}_{article_number or '0'}_{clause_number or '0'}_{point_letter or '0'}"
+                    uid = f"{law_name}_{chapter_number or '0'}_{article_number or '0'}_{clause_number or '0'}_{point_letter}"
 
                     results.append({
                         "id": uid,
@@ -154,7 +212,7 @@ def process_law(file_path, law_name):
                         "article": article_number or "",
                         "article_title": article_title or "",
                         "clause": clause_number or "",
-                        "point": point_letter or "",
+                        "point": point_letter,
                         "content": content_clean
                     })
 
