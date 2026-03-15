@@ -18,6 +18,19 @@ def extract_text_from_docx(path):
 
 
 # =========================
+# CLEAN CONTENT
+# =========================
+def clean_content(text):
+
+    text = text.replace("/.", "").replace("\n", " ")
+
+    # loại bỏ các tiêu đề cấu trúc
+    text = re.split(r"\b(Phần|Mục|Tiểu mục)\s+\d+", text)[0]
+
+    return text.strip()
+
+
+# =========================
 # 2. TÁCH CHƯƠNG
 # =========================
 def split_chapters(text):
@@ -45,7 +58,7 @@ def split_chapters(text):
 
 
 # =========================
-# 3. TÁCH ĐIỀU & TITLE
+# 3. TÁCH ĐIỀU
 # =========================
 def split_articles(text):
     pattern = r"\nĐiều\s+(\d+)\.\s*(.*)"
@@ -118,9 +131,9 @@ def split_points(clause_text):
 # 6. XỬ LÝ 1 LUẬT
 # =========================
 def process_law(file_path, law_name):
+
     text = extract_text_from_docx(file_path)
 
-    # Cắt phần công bố cuối luật
     text = re.split(r"Luật này được Quốc hội", text)[0]
 
     results = []
@@ -144,12 +157,7 @@ def process_law(file_path, law_name):
                 # =========================
                 if points == [(None, clause_content.strip())]:
 
-                    content_clean = (
-                        clause_content
-                        .replace("/.", "")
-                        .replace("\n", " ")
-                        .strip()
-                    )
+                    content_clean = clean_content(clause_content)
 
                     uid = f"{law_name}_{chapter_number or '0'}_{article_number or '0'}_{clause_number or '0'}"
 
@@ -166,17 +174,13 @@ def process_law(file_path, law_name):
 
                     continue
 
+
                 # =========================
                 # CLAUSE INTRO
                 # =========================
                 if intro:
 
-                    content_clean = (
-                        intro
-                        .replace("/.", "")
-                        .replace("\n", " ")
-                        .strip()
-                    )
+                    content_clean = clean_content(intro)
 
                     uid = f"{law_name}_{chapter_number or '0'}_{article_number or '0'}_{clause_number or '0'}_0"
 
@@ -191,17 +195,13 @@ def process_law(file_path, law_name):
                         "content": content_clean
                     })
 
+
                 # =========================
                 # POINTS
                 # =========================
                 for point_letter, point_content in points:
 
-                    content_clean = (
-                        point_content
-                        .replace("/.", "")
-                        .replace("\n", " ")
-                        .strip()
-                    )
+                    content_clean = clean_content(point_content)
 
                     uid = f"{law_name}_{chapter_number or '0'}_{article_number or '0'}_{clause_number or '0'}_{point_letter}"
 
@@ -223,6 +223,7 @@ def process_law(file_path, law_name):
 # 7. MAIN
 # =========================
 def main():
+
     laws = [
         ("data/luatDB.docx", "LDB"),
         ("data/luatLaoDong.docx", "LLD"),
