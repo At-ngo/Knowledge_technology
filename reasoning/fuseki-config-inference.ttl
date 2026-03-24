@@ -1,0 +1,36 @@
+@prefix :        <#> .
+@prefix ja:      <http://jena.hpl.hp.com/2005/11/Assembler#> .
+@prefix fuseki:  <http://jena.apache.org/fuseki#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+[] ja:loadClass "org.apache.jena.system.JenaSystem" .
+
+:reasoner a ja:ReasonerFactory ;
+    ja:reasonerClass "org.apache.jena.reasoner.rulesys.GenericRuleReasoner" ;
+    ja:rulesFrom "reasoning/legal_inference.rules" ;
+    ja:mode "forward" .
+
+:baseModel a ja:UnionModel ;
+    ja:subModel [
+        a ja:FileModel ;
+        ja:documentLocation "ontology/legal_ontology.rdf"
+    ] ;
+    ja:subModel [
+        a ja:FileModel ;
+        ja:documentLocation "legal_triples.ttl"
+    ] .
+
+:infModel a ja:InfModel ;
+    ja:baseModel :baseModel ;
+    ja:reasoner :reasoner .
+
+:dataset a ja:RDFDataset ;
+    ja:defaultGraph :infModel .
+
+:service a fuseki:Service ;
+    fuseki:name "legalqa-inf" ;
+    fuseki:serviceQuery "sparql" ;
+    fuseki:serviceReadGraphStore "get" ;
+    fuseki:serviceReadWriteGraphStore "data" ;
+    fuseki:serviceUpdate "update" ;
+    fuseki:dataset :dataset .

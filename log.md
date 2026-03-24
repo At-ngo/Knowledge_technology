@@ -3,9 +3,11 @@
 ## 07/03/2026
 
 ### Module 1 - Corpus Processing
+
 Status: DONE
 
 Tasks:
+
 - Thu thập PDF luật (LUẬT LAO ĐỘNG; LUẬT TRẬT TỰ, AN TOÀN GIAO THÔNG ĐƯỜNG BỘ; LUẬT ĐƯỜNG BỘ)
 - Convert sang text
 - Tách cấu trúc: Chương / Điều / Khoản / Điểm
@@ -16,25 +18,25 @@ data/legal_corpus.json
 
 Example:
 {
-    "id": "LDB_I_1_0_0",
-    "law": "LDB",
-    "chapter": "I",
-    "article": "1",
-    "article_title": "Phạm vi điều chỉnh",
-    "clause": "",
-    "point": "",
-    "content": "Luật này quy định về hoạt động đường bộ và quản lý nhà nước về hoạt động đường bộ."
-  },
-  {
-    "id": "LDB_I_2_1_0",
-    "law": "LDB",
-    "chapter": "I",
-    "article": "2",
-    "article_title": "Giải thích từ ngữ",
-    "clause": "1",
-    "point": "",
-    "content": "Hoạt động đường bộ bao gồm: hoạt động về quy hoạch, đầu tư, xây dựng, quản lý, sử dụng, vận hành, khai thác, bảo trì, bảo vệ kết cấu hạ tầng đường bộ; vận tải đường bộ."
-  },
+"id": "LDB_I_1_0_0",
+"law": "LDB",
+"chapter": "I",
+"article": "1",
+"article_title": "Phạm vi điều chỉnh",
+"clause": "",
+"point": "",
+"content": "Luật này quy định về hoạt động đường bộ và quản lý nhà nước về hoạt động đường bộ."
+},
+{
+"id": "LDB_I_2_1_0",
+"law": "LDB",
+"chapter": "I",
+"article": "2",
+"article_title": "Giải thích từ ngữ",
+"clause": "1",
+"point": "",
+"content": "Hoạt động đường bộ bao gồm: hoạt động về quy hoạch, đầu tư, xây dựng, quản lý, sử dụng, vận hành, khai thác, bảo trì, bảo vệ kết cấu hạ tầng đường bộ; vận tải đường bộ."
+},
 
 ---
 
@@ -68,27 +70,27 @@ Format Output:
 Dữ liệu được lưu dưới dạng JSON với cấu trúc:
 
 {
- "text": "câu luật gốc",
- "h": { "name": "subject" },
- "t": { "name": "object" },
- "relation": "relation_type"
+"text": "câu luật gốc",
+"h": { "name": "subject" },
+"t": { "name": "object" },
+"relation": "relation_type"
 }
 
 Ví dụ:
 
 {
- "text": "Luật này quy định về hoạt động đường bộ và quản lý nhà nước về hoạt động đường bộ",
- "h": { "name": "Luật này" },
- "t": { "name": "hoạt động đường bộ" },
- "relation": "quyDinhVe"
+"text": "Luật này quy định về hoạt động đường bộ và quản lý nhà nước về hoạt động đường bộ",
+"h": { "name": "Luật này" },
+"t": { "name": "hoạt động đường bộ" },
+"relation": "quyDinhVe"
 }
 
 Ngoài ra các quan hệ cũng được lưu dưới dạng knowledge triples:
 
 {
- "subject": "Luật này",
- "relation": "quyDinhVe",
- "object": "hoạt động đường bộ"
+"subject": "Luật này",
+"relation": "quyDinhVe",
+"object": "hoạt động đường bộ"
 }
 
 Các file kết quả được sử dụng để:
@@ -100,7 +102,9 @@ Xây dựng Knowledge Graph từ văn bản luật
 Output là 2 file dataset_annotation.json và knowledge_triples.json
 
 ### Module 3 - Ontology & RDF
+
 Tasks:
+
 - Thiết kế ontology bằng Protégé
 - Xây dựng các lớp (Class): Law, Chapter, Article, LegalEntity
 - Xây dựng các ObjectProperty:
@@ -132,9 +136,9 @@ Tasks:
 - Chuyển đổi knowledge triples từ Module 2 sang RDF/Turtle (.ttl)
 
 - Chuẩn hóa entity trước khi sinh RDF:
-    Chuẩn hóa chữ hoa/thường
-    Loại bỏ một số từ dẫn như “các”, “những”, “mọi”
-    Gom các entity đồng nghĩa/biến thể về cùng một URI
+  Chuẩn hóa chữ hoa/thường
+  Loại bỏ một số từ dẫn như “các”, “những”, “mọi”
+  Gom các entity đồng nghĩa/biến thể về cùng một URI
 
 - Nạp ontology và RDF triples vào Apache Jena Fuseki
 
@@ -145,6 +149,7 @@ Mô tả công việc:
 Sử dụng dữ liệu knowledge triples từ Module 2 để xây dựng ontology và biểu diễn tri thức dưới dạng RDF.
 
 Ontology được xây dựng bằng Protégé với 4 lớp chính:
+
 - Law: biểu diễn văn bản luật
 - Chapter: biểu diễn chương của luật
 - Article: biểu diễn điều luật
@@ -152,11 +157,13 @@ Ontology được xây dựng bằng Protégé với 4 lớp chính:
 
 Các relation ngữ nghĩa được ánh xạ trực tiếp từ output Module 2 theo dạng: Subject – Relation – Object
 Trong đó:
+
 - Subject và Object được biểu diễn thành các cá thể của lớp LegalEntity
 - Các điều luật vẫn được giữ lại để liên kết với thực thể thông qua quan hệ mentionsEntity
 - rawSubject và rawObject được dùng để lưu lại nội dung subject/object gốc phục vụ truy vết và kiểm tra
 
 Ontology sử dụng namespace:
+
 - legal: <http://example.org/legal-qa#>
 
 Dữ liệu từ file knowledge_triples.json được chuyển đổi sang RDF/Turtle bằng script Python và lưu thành file .ttl.
@@ -164,6 +171,33 @@ Dữ liệu từ file knowledge_triples.json được chuyển đổi sang RDF/T
 Sau đó ontology và RDF triples được nạp vào Apache Jena Fuseki để: lưu trữ knowledge graph, kiểm tra dữ liệu, truy vấn bằng SPARQL
 
 Output files:
+
 - ontology/legal_ontology.rdf
 - legal_triples.ttl
 - convertToRDF.py
+
+---
+
+## 22/03/2026
+
+### Module 4 - Inference Engine
+
+Status: DONE
+
+Tasks:
+
+- Viết tập luật GenericRuleReasoner (`reasoning/legal_inference.rules`) để:
+  - Lan truyền quan hệ `baoGom` theo kiểu bắc cầu.
+  - Kế thừa `apDungCho` xuống từng thành viên của nhóm.
+  - Gắn nhãn `HanhViViPham` + `SevereViolation` cho các hành vi bị cấm (đặc biệt các câu liên quan nồng độ cồn).
+  - Tự động liên kết điều luật với hành vi bị cấm để truy vấn dễ hơn.
+- Thêm hai lớp mới `HanhViViPham`, `SevereViolation` vào ontology.
+- Tạo cấu hình `reasoning/fuseki-config-inference.ttl` để Fuseki khởi động dataset suy luận `legalqa-inf`.
+- Viết script `reasoning/run_inference_demo.py` (RDFlib) nhằm kiểm thử logic suy luận offline.
+
+Kết quả kiểm thử (run_inference_demo.py):
+
+- 50 triple `baoGom` mới, 15 triple `apDungCho` mới, 208 hành vi gắn `HanhViViPham`, 3 trường hợp `SevereViolation`, 1128 liên kết điều luật ↔ hành vi.
+- `ASK { legal:KetCauHaTangDuongBo legal:baoGom legal:Duong }` ⇒ TRUE (không tồn tại trong dữ liệu gốc).
+- `SELECT ?holder { ?holder legal:apDungCho legal:NguoiDiBoTrenDuongBo }` ⇒ trả về `legal:ThongTin` như kỳ vọng.
+- `SELECT ?action { ?action rdf:type legal:SevereViolation }` ⇒ trả về ba hành vi liên quan nồng độ cồn.

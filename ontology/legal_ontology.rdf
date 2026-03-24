@@ -275,6 +275,18 @@
     <!-- http://example.org/legal-qa#LegalEntity -->
 
     <owl:Class rdf:about="http://example.org/legal-qa#LegalEntity"/>
+
+
+    <!-- http://example.org/legal-qa#HanhViViPham -->
+
+    <owl:Class rdf:about="http://example.org/legal-qa#HanhViViPham"/>
+
+
+    <!-- http://example.org/legal-qa#SevereViolation -->
+
+    <owl:Class rdf:about="http://example.org/legal-qa#SevereViolation">
+        <rdfs:subClassOf rdf:resource="http://example.org/legal-qa#HanhViViPham"/>
+    </owl:Class>
 </rdf:RDF>
 
 
