@@ -184,20 +184,17 @@ Output files:
 
 Status: DONE
 
-Tasks:
+Pipeline:
 
-- Viết tập luật GenericRuleReasoner (`reasoning/legal_inference.rules`) để:
-  - Lan truyền quan hệ `baoGom` theo kiểu bắc cầu.
-  - Kế thừa `apDungCho` xuống từng thành viên của nhóm.
-  - Gắn nhãn `HanhViViPham` + `SevereViolation` cho các hành vi bị cấm (đặc biệt các câu liên quan nồng độ cồn).
-  - Tự động liên kết điều luật với hành vi bị cấm để truy vấn dễ hơn.
-- Thêm hai lớp mới `HanhViViPham`, `SevereViolation` vào ontology.
-- Tạo cấu hình `reasoning/fuseki-config-inference.ttl` để Fuseki khởi động dataset suy luận `legalqa-inf`.
-- Viết script `reasoning/run_inference_demo.py` (RDFlib) nhằm kiểm thử logic suy luận offline.
+1. Thiết kế tập luật GenericRuleReasoner (`reasoning/legal_inference.rules`). Bộ luật bao gồm các nhóm quy tắc: lan truyền `baoGom` theo kiểu bắc cầu, thừa hưởng `apDungCho` xuống từng thành viên nhóm, đánh dấu `HanhViViPham`/`SevereViolation` cho hành vi bị cấm (đặc biệt các trường hợp vi phạm nồng độ cồn), và tự động nối hành vi ↔ điều luật để dễ truy vấn.
+2. Mở rộng ontology: bổ sung hai lớp `HanhViViPham` và `SevereViolation`, cập nhật các ràng buộc liên hệ với `LegalEntity`, đồng thời đồng bộ lại file `legal_ontology.rdf`.
+3. Triển khai hạ tầng Fuseki suy luận: cấu hình `reasoning/fuseki-config-inference.ttl` trỏ tới kho TDB2 `tdb-legalqa`, nạp rule set vào `GenericRuleReasonerFactory`, khai báo endpoint `/legalqa-inf` hỗ trợ query/update/read graph store.
+4. Viết script kiểm thử `reasoning/run_inference_demo.py` sử dụng RDFlib để nạp RDF + rule, chạy suy luận cục bộ, thống kê số triple phát sinh và chạy một loạt truy vấn ASK/SELECT mẫu trước khi đưa rule vào Fuseki.
+5. Tái nạp dữ liệu vào TDB bằng `tdb2.tdbloader`, khởi động Fuseki với cấu hình mới và xác nhận endpoint inference trả lời đúng (đặc biệt các truy vấn ASK/SELECT ghi trong báo cáo kiểm thử).
 
 Kết quả kiểm thử (run_inference_demo.py):
 
-- 50 triple `baoGom` mới, 15 triple `apDungCho` mới, 208 hành vi gắn `HanhViViPham`, 3 trường hợp `SevereViolation`, 1128 liên kết điều luật ↔ hành vi.
+- 50 triple `baoGom` mới, 15 triple `apDungCho` mới, 208 hành vi gắn `HanhViViPham`, 3 trường hợp `SevereViolation`, 1128 liên kết điều luật ↔ hành vi; các truy vấn mẫu đều trả về như kỳ vọng trước khi triển khai trên Fuseki.
 - `ASK { legal:KetCauHaTangDuongBo legal:baoGom legal:Duong }` ⇒ TRUE (không tồn tại trong dữ liệu gốc).
 - `SELECT ?holder { ?holder legal:apDungCho legal:NguoiDiBoTrenDuongBo }` ⇒ trả về `legal:ThongTin` như kỳ vọng.
 - `SELECT ?action { ?action rdf:type legal:SevereViolation }` ⇒ trả về ba hành vi liên quan nồng độ cồn.
