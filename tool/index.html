@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tool Gán Nhãn Quan Hệ Luật (Batch Processing + Auto Retry)</title>
+    <style>
+        :root { --primary-color: #2c3e50; --accent-color: #2980b9; --head-bg: #d4edda; --head-text: #155724; --tail-bg: #fff3cd; --tail-text: #856404; --border-color: #ddd; --ai-color: #8e44ad; --auto-color: #d35400; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f4f6f9; display: flex; flex-direction: column; height: 100vh; }
+        header { background-color: var(--primary-color); color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        header h2 { margin: 0; font-size: 1.1rem; }
+        .header-actions { display: flex; gap: 10px; align-items: center; }
+        .api-input { padding: 6px 10px; border-radius: 4px; border: 1px solid #ccc; width: 300px; font-size: 0.85rem; }
+        .container { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 300px; background: white; border-right: 1px solid var(--border-color); display: flex; flex-direction: column; padding: 15px; overflow-y: auto; }
+        .file-upload { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #eee; }
+        input[type="file"] { font-size: 0.8rem; width: 100%; }
+        .nav-list { list-style: none; padding: 0; margin: 0; }
+        .nav-item { padding: 10px; cursor: pointer; border-radius: 4px; margin-bottom: 4px; font-size: 0.85rem; border-left: 3px solid transparent; background: #fdfdfd; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: flex; justify-content: space-between;}
+        .nav-item:hover { background-color: #eef2f5; }
+        .nav-item.active { background-color: #e3f2fd; border-left-color: var(--accent-color); font-weight: 600; }
+        .nav-item.has-data { border-left-color: #28a745; background-color: #f0fff4; }
+        .nav-item.skipped { border-left-color: #6c757d; background-color: #f8f9fa; color: #6c757d;}
+        .workspace { flex: 1; padding: 20px; display: flex; flex-direction: column; overflow-y: auto; }
+        .meta-card { background: white; padding: 10px 15px; border-radius: 6px; margin-bottom: 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); font-size: 0.9rem; color: #555; display: flex; gap: 15px; flex-wrap: wrap; align-items: center; }
+        .meta-tag { background: #eee; padding: 2px 8px; border-radius: 4px; font-weight: bold; font-size: 0.85rem; color: #333;}
+        #text-display { font-size: 1.15rem; line-height: 1.8; background: white; padding: 30px; border: 1px solid var(--border-color); border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 10px; white-space: pre-wrap; min-height: 100px; }
+        .hl-subject { background-color: var(--head-bg); color: var(--head-text); border-bottom: 2px solid var(--head-text); cursor: help;}
+        .hl-object { background-color: var(--tail-bg); color: var(--tail-text); border-bottom: 2px solid var(--tail-text); cursor: help;}
+        .ai-panel { background: #fdfafeb6; border: 1px dashed var(--ai-color); padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+        .btn-ai { background: var(--ai-color); color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 0.9rem; margin-right: 10px;}
+        .btn-auto { background: var(--auto-color); color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 0.9rem; }
+        .btn-ai:hover, .btn-auto:hover { opacity: 0.9; }
+        .btn-ai:disabled, .btn-auto:disabled { background: #ccc; cursor: not-allowed; }
+        .ai-results { margin-top: 15px; display: flex; flex-direction: column; gap: 10px; }
+        .ai-item { display: flex; justify-content: space-between; align-items: center; background: white; padding: 10px; border-radius: 4px; border: 1px solid #eee; font-size: 0.9rem; }
+        .btn-accept { background: #28a745; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer; font-weight:bold; margin-right:5px;}
+        .btn-skip { background: #6c757d; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer; }
+        .controls-area { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 -2px 10px rgba(0,0,0,0.05); }
+        .input-row { display: flex; gap: 15px; margin-bottom: 15px; }
+        .field-group { flex: 1; display: flex; flex-direction: column; }
+        .field-group label { font-size: 0.8rem; font-weight: bold; margin-bottom: 5px; text-transform: uppercase; }
+        .field-display { padding: 8px; background: #f9f9f9; border: 1px dashed #ccc; border-radius: 4px; min-height: 20px; font-style: italic; }
+        .actions { display: flex; gap: 10px; align-items: center; margin-top: 10px; }
+        select { padding: 10px; border-radius: 4px; border: 1px solid #ccc; flex: 1; font-size: 1rem;}
+        button { padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s; }
+        .btn-sub { background: var(--head-text); color: white; }
+        .btn-obj { background: var(--tail-text); color: white; }
+        .btn-add { background: #28a745; color: white; flex: 0 0 100px; }
+        .btn-add:disabled { background: #ccc; cursor: not-allowed; }
+        .btn-exp { background: #ffc107; color: #333; }
+        .btn-restore { background: #17a2b8; color: white; font-size: 0.8rem; padding: 6px 10px;}
+        .output-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9rem; }
+        .output-table th { text-align: left; background: #eee; padding: 8px; }
+        .output-table td { border-bottom: 1px solid #eee; padding: 8px; }
+        .del-btn { color: red; cursor: pointer; font-weight: bold; border: none; background: none;}
+        .loader { border: 3px solid #f3f3f3; border-top: 3px solid var(--ai-color); border-radius: 50%; width: 14px; height: 14px; animation: spin 1s linear infinite; display: inline-block; vertical-align: middle; margin-right: 5px; display: none;}
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+<header>
+    <h2>Legal Relation Annotation Tool</h2>
+    <div class="header-actions">
+        <button class="btn-restore" onclick="restoreFromStorage()" id="btnRestore" style="display:none;">Khôi phục tiến trình</button>
+        <input type="text" id="apiKeyInput" class="api-input" placeholder="Key 1, Key 2, Key 3..." title="Nhập nhiều key cách nhau bằng dấu phẩy" />
+        <button class="btn-exp" onclick="exportJSON()">💾 Export JSON</button>
+    </div>
+</header>
+
+<div class="container">
+    <div class="sidebar">
+        <div class="file-upload">
+            <label><b>1. Load File JSON</b></label>
+            <input type="file" id="fileInput" accept=".json" style="margin-top:5px;">
+        </div>
+        <div style="font-size:0.85rem; color:#666; margin-bottom:5px;">Danh sách câu:</div>
+        <ul class="nav-list" id="navList">
+            <li style="padding:10px; color:#999;">Chưa có dữ liệu...</li>
+        </ul>
+    </div>
+
+    <div class="workspace">
+        <div class="meta-card" id="metaInfo">
+            <div>Luật: <span class="meta-tag" id="metaLaw">...</span></div>
+            <div>Chương: <span class="meta-tag" id="metaChap">...</span></div>
+            <div>Điều: <span class="meta-tag" id="metaArt">...</span></div>
+            <div>Khoản: <span class="meta-tag" id="metaClau">...</span></div>
+            <div>Điểm: <span class="meta-tag" id="metaPoint">...</span></div>
+        </div>
+
+        <div id="text-display" onmouseup="handleSelection()">Vui lòng chọn file input để bắt đầu.</div>
+
+        <div class="ai-panel">
+            <button class="btn-ai" id="btnCallAi" onclick="callGeminiAPISingle()">
+                <div class="loader" id="aiLoader"></div>✨ Gợi ý câu này
+            </button>
+            <button class="btn-auto" id="btnAutoAi" onclick="toggleAutoAI()">
+                ▶ Chạy Auto Toàn Bộ (Batch)
+            </button>
+            <span id="aiStatus" style="font-size: 0.85rem; font-weight: bold; color: #333; margin-left: 10px;"></span>
+            <div class="ai-results" id="aiResults"></div>
+        </div>
+
+        <div class="controls-area">
+            <div class="input-row">
+                <div class="field-group"><label>Subject (Chủ thể)</label><div id="displaySubject" class="field-display">...</div></div>
+                <div class="field-group"><label>Object (Đối tượng)</label><div id="displayObject" class="field-display">...</div></div>
+            </div>
+
+            <div class="actions">
+                <button class="btn-sub" onclick="setSubject()">Chủ thể (1)</button>
+                <button class="btn-obj" onclick="setObject()">Đối tượng (2)</button>
+                <select id="relationSelect">
+                    <option value="" disabled selected>-- Chọn Quan Hệ (12 Nhãn) --</option>
+                    <option value="quyDinhVe">quyDinhVe</option>
+                    <option value="apDungCho">apDungCho</option>
+                    <option value="dinhNghia">dinhNghia</option>
+                    <option value="baoGom">baoGom</option>
+                    <option value="yeuCau">yeuCau</option>
+                    <option value="cam">cam</option>
+                    <option value="choPhep">choPhep</option>
+                    <option value="mucDich">mucDich</option>
+                    <option value="baoDam">baoDam</option>
+                    <option value="thucHien">thucHien</option>
+                    <option value="suDung">suDung</option>
+                    <option value="ketNoi">ketNoi</option>
+                </select>
+                <button class="btn-add" id="btnAdd" onclick="addEntry()" disabled>Thêm (+)</button>
+                <button style="background:#eee;" onclick="clearSelection()">Hủy</button>
+            </div>
+
+            <h4 style="margin: 15px 0 5px 0;">Danh sách đã gán (Trong câu này):</h4>
+            <table class="output-table">
+                <thead><tr><th width="35%">Subject</th><th width="20%">Relation</th><th width="35%">Object</th><th width="10%">Xóa</th></tr></thead>
+                <tbody id="outputBody"></tbody>
+            </table>
+            
+            <div style="margin-top:15px; text-align:right;">
+                <button onclick="changePage(-1)">Previous</button>
+                <button onclick="changePage(1)">Next</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // --- Global Variables ---
+    let rawData = [];
+    let annotations = []; 
+    let processedIds = new Set();
+    let currentIndex = 0;
+    
+    let tempSel = { text: '', start: 0, end: 0 };
+    let tempSubject = null;
+    let tempObject = null;
+
+    let isAutoRunning = false;
+    let apiKeys = [];
+    let currentKeyIdx = 0;
+    const BATCH_SIZE = 5; // Chia batch 5 câu
+
+    const VALID_RELATIONS = ["quyDinhVe", "apDungCho", "dinhNghia", "baoGom", "yeuCau", "cam", "choPhep", "mucDich", "baoDam", "thucHien", "suDung", "ketNoi"];
+
+    // --- Init & Restore ---
+    document.getElementById('fileInput').addEventListener('change', e => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = ev => {
+            try {
+                rawData = JSON.parse(ev.target.result);
+                if(localStorage.getItem('dataset_backup')) document.getElementById('btnRestore').style.display = 'block';
+                renderNav(); loadItem(0);
+            } catch (err) { alert("Lỗi đọc JSON: " + err); }
+        };
+        reader.readAsText(file);
+    });
+
+    function restoreFromStorage() {
+        if(confirm("Khôi phục sẽ đè lên tiến trình hiện tại. Bạn có chắc chắn?")) {
+            try {
+                let savedAnno = localStorage.getItem('dataset_backup');
+                let savedProc = localStorage.getItem('processed_backup');
+                if(savedAnno) annotations = JSON.parse(savedAnno);
+                if(savedProc) processedIds = new Set(JSON.parse(savedProc));
+                renderNav(); loadItem(currentIndex);
+                alert("Khôi phục thành công!");
+                document.getElementById('btnRestore').style.display = 'none';
+            } catch(e) { alert("Lỗi khôi phục: " + e); }
+        }
+    }
+
+    function saveBackup() {
+        localStorage.setItem("dataset_backup", JSON.stringify(annotations));
+        localStorage.setItem("processed_backup", JSON.stringify(Array.from(processedIds)));
+    }
+
+    function renderNav() {
+        const navList = document.getElementById('navList');
+        navList.innerHTML = '';
+        rawData.forEach((item, idx) => {
+            const li = document.createElement('li');
+            li.className = 'nav-item';
+            li.id = `nav-${idx}`;
+            let statusIcon = '';
+            if (annotations.some(a => a.sourceId === item.id)) {
+                li.classList.add('has-data'); statusIcon = '✅';
+            } else if (processedIds.has(item.id)) {
+                li.classList.add('skipped'); statusIcon = '➖';
+            }
+            li.innerHTML = `<span>${idx + 1}. ${item.article_title || 'Điều ' + item.article} (${item.id})</span> <span>${statusIcon}</span>`;
+            li.onclick = () => { if(!isAutoRunning) loadItem(idx); };
+            navList.appendChild(li);
+        });
+    }
+
+    function loadItem(index) {
+        if (index < 0 || index >= rawData.length) return;
+        currentIndex = index;
+        
+        document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+        const navEl = document.getElementById(`nav-${index}`);
+        if(navEl) {
+            navEl.classList.add('active');
+            navEl.scrollIntoView({behavior: "smooth", block: "center"});
+        }
+
+        const d = rawData[index];
+        document.getElementById('metaLaw').innerText = d.law || '';
+        document.getElementById('metaChap').innerText = d.chapter || '';
+        document.getElementById('metaArt').innerText = d.article || '';
+        document.getElementById('metaClau').innerText = d.clause || '';
+        document.getElementById('metaPoint').innerText = d.point || '';
+        document.getElementById('text-display').innerText = d.content;
+        
+        clearSelection();
+        document.getElementById('aiResults').innerHTML = '';
+        document.getElementById('aiStatus').innerText = '';
+        
+        renderAnnotations(); renderHighlights();
+    }
+
+    function changePage(dir) { if(!isAutoRunning) loadItem(currentIndex + dir); }
+
+    // --- Manual Annotation ---
+    function handleSelection() {
+        const sel = window.getSelection();
+        if (!sel.rangeCount) return;
+        const range = sel.getRangeAt(0);
+        const textDisplay = document.getElementById('text-display');
+        if (!textDisplay.contains(range.commonAncestorContainer)) return;
+        const preRange = range.cloneRange();
+        preRange.selectNodeContents(textDisplay);
+        preRange.setEnd(range.startContainer, range.startOffset);
+        const text = range.toString();
+        if (text.trim()) tempSel = { text: text, start: preRange.toString().length, end: preRange.toString().length + text.length };
+    }
+
+    function setSubject() { if (tempSel.text) { tempSubject = { ...tempSel }; document.getElementById('displaySubject').innerText = tempSubject.text; checkBtn(); } }
+    function setObject() { if (tempSel.text) { tempObject = { ...tempSel }; document.getElementById('displayObject').innerText = tempObject.text; checkBtn(); } }
+    function checkBtn() { document.getElementById('btnAdd').disabled = !(tempSubject && tempObject); }
+
+    function clearSelection() {
+        tempSubject = null; tempObject = null; tempSel = { text: '', start: 0, end: 0 };
+        document.getElementById('displaySubject').innerText = "...";
+        document.getElementById('displayObject').innerText = "...";
+        document.getElementById('relationSelect').value = ""; document.getElementById('btnAdd').disabled = true;
+        window.getSelection().removeAllRanges();
+    }
+
+    document.addEventListener('keydown', e => {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || isAutoRunning) return;
+        if (e.key === '1') setSubject();
+        if (e.key === '2') setObject();
+        if (e.key === 'Enter') addEntry();
+    });
+
+    function addEntry() {
+        const rel = document.getElementById('relationSelect').value;
+        if (!rel || document.getElementById('btnAdd').disabled) return alert("Chọn quan hệ!");
+        pushAnnotation(rawData[currentIndex].id, tempSubject, rel, tempObject);
+        clearSelection(); saveBackup();
+    }
+
+    function pushAnnotation(sourceId, sub, rel, obj) {
+        annotations.push({ sourceId: sourceId, subject: sub, object: obj, relation: rel });
+        processedIds.add(sourceId);
+        if(sourceId === rawData[currentIndex].id) {
+            renderNav(); renderAnnotations(); renderHighlights();
+        }
+    }
+
+    function removeEntry(idxInList) {
+        const currentSourceId = rawData[currentIndex].id;
+        let count = 0, realIndex = -1;
+        for (let i = 0; i < annotations.length; i++) {
+            if (annotations[i].sourceId === currentSourceId) {
+                if (count === idxInList) { realIndex = i; break; }
+                count++;
+            }
+        }
+        if (realIndex > -1) {
+            annotations.splice(realIndex, 1);
+            renderNav(); renderAnnotations(); renderHighlights(); saveBackup();
+        }
+    }
+
+    // --- AI Integration (BATCH + ROTATE) ---
+    function getApiKeys() {
+        return document.getElementById('apiKeyInput').value.split(',').map(k => k.trim()).filter(k => k !== "");
+    }
+
+    function generatePromptBatch(batchArray) {
+        return `Bạn là hệ thống hỗ trợ gán nhãn quan hệ (Relation Extraction) cho văn bản luật Việt Nam.
+Nhiệm vụ: Trích xuất các quan hệ (Subject - Relation - Object) từ một danh sách các câu luật.
+
+QUAN TRỌNG:
+- Chỉ dùng 12 relation sau: quyDinhVe, dinhNghia, baoGom, apDungCho, cam, choPhep, yeuCau, baoDam, mucDich, thucHien, suDung, ketNoi.
+- KHÔNG tạo relation mới. Trả về [] nếu không có quan hệ rõ ràng (câu mục tiêu, khẩu hiệu, tiêu đề, câu dẫn).
+- Một câu có thể có nhiều quan hệ (nếu Subject trỏ tới nhiều Object, hãy tách thành nhiều object JSON riêng).
+- Subject và Object phải được trích xuất y hệt như văn bản trong câu gốc.
+- Nếu câu không có S-R-O, mảng relations của câu đó sẽ rỗng [].
+
+Output format BẮT BUỘC TRẢ VỀ:
+[
+  {
+    "id": "1",
+    "relations": [
+      { "subject": "...", "relation": "...", "object": "..." }
+    ]
+  },
+  {
+    "id": "2",
+    "relations": []
+  }
+]
+
+Input của bạn:
+${JSON.stringify(batchArray, null, 2)}`;
+    }
+
+    async function fetchWithRetryAndRotateBatch(batchArray) {
+        const maxAttemptsPerKey = 3;
+        let attemptsCurrentKey = 0;
+        let rotationCount = 0; 
+
+        while (true) {
+            if(apiKeys.length === 0) throw new Error("NO_API_KEYS");
+            let key = apiKeys[currentKeyIdx];
+            
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${key}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: generatePromptBatch(batchArray) }] }],
+                        generationConfig: { 
+                            temperature: 0.1,
+                            response_mime_type: "application/json" // ÉP TRẢ VỀ JSON CHUẨN (KHÔNG MARKDOWN)
+                        }
+                    })
+                });
+
+                if (!response.ok) {
+                    // Xử lý các mã lỗi hay gặp khi hết Quota
+                    if (response.status === 429 || response.status === 403 || response.status === 503) {
+                        throw new Error('QUOTA_EXHAUSTED');
+                    }
+                    throw new Error(`Lỗi Server API: ${response.status}`);
+                }
+
+                const data = await response.json();
+                let aiResponseText = data.candidates[0].content.parts[0].text;
+                // Phòng hờ Gemini vẫn trả markdown dù đã set mime_type
+                aiResponseText = aiResponseText.replace(/```json/g, '').replace(/```/g, '').trim();
+                return JSON.parse(aiResponseText);
+
+            } catch (error) {
+                if (error.message === 'QUOTA_EXHAUSTED') {
+                    attemptsCurrentKey++;
+                    console.warn(`Key ${currentKeyIdx+1} bị lỗi Quota/429. Attempt: ${attemptsCurrentKey}`);
+                    
+                    if (attemptsCurrentKey >= maxAttemptsPerKey) {
+                        currentKeyIdx = (currentKeyIdx + 1) % apiKeys.length;
+                        attemptsCurrentKey = 0;
+                        rotationCount++;
+                        document.getElementById('aiStatus').innerText = `Đang xoay sang API Key ${currentKeyIdx+1}...`;
+                        
+                        if (rotationCount >= apiKeys.length) {
+                            throw new Error('ALL_KEYS_EXHAUSTED');
+                        }
+                    }
+                    await new Promise(r => setTimeout(r, 2000));
+                } else {
+                    throw error; 
+                }
+            }
+        }
+    }
+
+    // Single Câu AI (Dùng chung logic Batch nhưng độ dài = 1)
+    async function callGeminiAPISingle() {
+        apiKeys = getApiKeys();
+        if (apiKeys.length === 0) return alert("Vui lòng nhập API Key!");
+        if (rawData.length === 0) return alert("Tải dữ liệu trước!");
+
+        const btnAi = document.getElementById('btnCallAi');
+        const loader = document.getElementById('aiLoader');
+        const statusText = document.getElementById('aiStatus');
+        const currentItem = rawData[currentIndex];
+        
+        btnAi.disabled = true; loader.style.display = 'inline-block';
+        statusText.innerText = "Đang gửi...";
+        document.getElementById('aiResults').innerHTML = '';
+
+        try {
+            if(currentItem.content.trim().endsWith(':')) {
+                statusText.innerText = "Gemini: Bỏ qua câu dẫn (có dấu hai chấm ở cuối).";
+                processedIds.add(currentItem.id); renderNav(); saveBackup();
+            } else {
+                const batchInput = [{ id: currentItem.id, text: currentItem.content }];
+                const aiData = await fetchWithRetryAndRotateBatch(batchInput);
+                
+                const relations = aiData[0].relations || [];
+                if (relations.length === 0) {
+                    statusText.innerText = "Gemini: Trả về rỗng (Không có S-R-O).";
+                    processedIds.add(currentItem.id); renderNav(); saveBackup();
+                } else {
+                    statusText.innerText = `Gemini: Gợi ý ${relations.length} quan hệ.`;
+                    renderAiResultsManual(relations);
+                }
+            }
+        } catch (error) {
+            statusText.innerText = `Lỗi: ${error.message}`;
+        } finally {
+            btnAi.disabled = false; loader.style.display = 'none';
+        }
+    }
+
+    function renderAiResultsManual(relations) {
+        const container = document.getElementById('aiResults');
+        container.innerHTML = '';
+        relations.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'ai-item';
+            div.innerHTML = `
+                <div><strong>[H]:</strong> ${item.subject} <br><strong>[Rel]:</strong> <span style="color:var(--ai-color); font-weight:bold;">${item.relation}</span> <br><strong>[T]:</strong> ${item.object}</div>
+                <div style="display:flex; gap:10px;">
+                    <button class="btn-accept" onclick="acceptAiResult('${item.subject.replace(/'/g, "\\'")}', '${item.relation}', '${item.object.replace(/'/g, "\\'")}', this.parentElement.parentElement)">✔ Accept</button>
+                    <button class="btn-skip" onclick="this.parentElement.parentElement.remove()">⏭ Skip</button>
+                </div>`;
+            container.appendChild(div);
+        });
+    }
+
+    function acceptAiResult(subText, relText, objText, elementNode) {
+        if (!VALID_RELATIONS.includes(relText)) return alert(`Lỗi: Relation "${relText}" không nằm trong 12 nhãn!`);
+        const fullText = rawData[currentIndex].content;
+        let subStart = fullText.indexOf(subText);
+        let objStart = fullText.indexOf(objText);
+        const subObj = { text: subText, start: subStart, end: subStart !== -1 ? subStart + subText.length : -1 };
+        const objObj = { text: objText, start: objStart, end: objStart !== -1 ? objStart + objText.length : -1 };
+        pushAnnotation(rawData[currentIndex].id, subObj, relText, objObj);
+        saveBackup();
+        if(elementNode) elementNode.remove();
+    }
+
+    // AUTO RUN TOÀN BỘ (BATCHING)
+    async function toggleAutoAI() {
+        const btnAuto = document.getElementById('btnAutoAi');
+        if (isAutoRunning) {
+            isAutoRunning = false;
+            btnAuto.innerText = '▶ Chạy Auto Toàn Bộ (Batch)';
+            document.getElementById('aiStatus').innerText = "Đã dừng Auto.";
+            return;
+        }
+
+        apiKeys = getApiKeys();
+        if (apiKeys.length === 0) return alert("Vui lòng nhập API Key để chạy Auto!");
+        if (rawData.length === 0) return alert("Tải dữ liệu trước!");
+
+        isAutoRunning = true;
+        btnAuto.innerText = '⏹ Dừng Auto';
+        document.getElementById('aiStatus').innerText = "Đang gom dữ liệu...";
+
+        // 1. Build Queue (Lọc bỏ câu đã làm và câu dấu hai chấm)
+        let queue = [];
+        for (let i = 0; i < rawData.length; i++) {
+            const item = rawData[i];
+            if (processedIds.has(item.id)) continue;
+            
+            if (item.content.trim().endsWith(':')) {
+                processedIds.add(item.id);
+                continue;
+            }
+            queue.push({ index: i, id: item.id, text: item.content });
+        }
+
+        saveBackup();
+        renderNav();
+
+        if(queue.length === 0) {
+            isAutoRunning = false;
+            btnAuto.innerText = '▶ Chạy Auto Toàn Bộ (Batch)';
+            document.getElementById('aiStatus').innerText = "Tất cả các câu đã được xử lý!";
+            return;
+        }
+
+        // 2. Chạy từng Batch
+        for (let i = 0; i < queue.length; i += BATCH_SIZE) {
+            if (!isAutoRunning) break;
+
+            const batch = queue.slice(i, i + BATCH_SIZE);
+            const batchInput = batch.map(b => ({ id: b.id, text: b.text }));
+
+            // Update UI để biết đang chạy đến đâu
+            const latestItemIndex = batch[batch.length - 1].index;
+            loadItem(latestItemIndex); 
+            const statusText = document.getElementById('aiStatus');
+            statusText.innerText = `Đang Auto gửi Batch (câu ${batch[0].index + 1} đến ${latestItemIndex + 1})...`;
+
+            try {
+                // Gọi API
+                const aiData = await fetchWithRetryAndRotateBatch(batchInput);
+                
+                // Trích xuất kết quả
+                aiData.forEach(res => {
+                    if (res.relations && res.relations.length > 0) {
+                        res.relations.forEach(rel => {
+                            if (VALID_RELATIONS.includes(rel.relation)) {
+                                const origItem = batch.find(b => b.id === res.id);
+                                if (origItem) {
+                                    let sStart = origItem.text.indexOf(rel.subject);
+                                    let oStart = origItem.text.indexOf(rel.object);
+                                    const sObj = { text: rel.subject, start: sStart, end: sStart !== -1 ? sStart + rel.subject.length : -1 };
+                                    const oObj = { text: rel.object, start: oStart, end: oStart !== -1 ? oStart + rel.object.length : -1 };
+                                    
+                                    annotations.push({ sourceId: res.id, subject: sObj, object: oObj, relation: rel.relation });
+                                }
+                            }
+                        });
+                    }
+                    processedIds.add(res.id); // Đánh dấu ID đã hoàn thành
+                });
+                
+                renderNav();
+                renderAnnotations();
+                renderHighlights();
+                saveBackup();
+
+            } catch (error) {
+                if (error.message === 'ALL_KEYS_EXHAUSTED') {
+                    // MỞ POPUP NHẬP KEY NẾU HẾT QUOTA
+                    isAutoRunning = false;
+                    btnAuto.innerText = '▶ Chạy Auto Toàn Bộ (Batch)';
+                    statusText.innerText = "Tất cả API Key đã lỗi / hết Quota!";
+                    
+                    // Hiện hộp thoại popup (prompt) yêu cầu nhập key mới
+                    const newKeys = prompt("LỖI 429: Các API Key hiện tại đã hết Quota.\nVui lòng dán API Key mới (cách nhau dấu phẩy) vào đây và nhấn OK để chạy tiếp.\nNhấn Cancel để dừng lại:");
+                    
+                    if (newKeys && newKeys.trim() !== "") {
+                        document.getElementById('apiKeyInput').value = newKeys;
+                        apiKeys = getApiKeys();
+                        currentKeyIdx = 0;
+                        isAutoRunning = true;
+                        btnAuto.innerText = '⏹ Dừng Auto';
+                        i -= BATCH_SIZE; // Lùi vòng lặp lại để chạy lại Batch vừa thất bại
+                        continue;
+                    } else {
+                        break; // Người dùng ấn Cancel -> Dừng hẳn
+                    }
+                } else {
+                    console.error(error);
+                    statusText.innerText = `Lỗi hệ thống: ${error.message}`;
+                    // Skip các ID trong batch lỗi để không bị kẹt lặp vô hạn
+                    batch.forEach(b => processedIds.add(b.id)); 
+                    saveBackup();
+                }
+            }
+
+            // Delay 1500ms giữa mỗi Batch
+            if (isAutoRunning && (i + BATCH_SIZE) < queue.length) {
+                await new Promise(r => setTimeout(r, 1500));
+            }
+        }
+
+        if (isAutoRunning) {
+            isAutoRunning = false;
+            btnAuto.innerText = '▶ Chạy Auto Toàn Bộ (Batch)';
+            document.getElementById('aiStatus').innerText = "Đã hoàn thành duyệt toàn bộ dữ liệu!";
+            alert("Tiến trình Auto Batch đã hoàn thành!");
+        }
+    }
+
+    // --- Highlighting Engine ---
+    function renderAnnotations() {
+        const outputBody = document.getElementById('outputBody');
+        outputBody.innerHTML = '';
+        const list = annotations.filter(a => a.sourceId === rawData[currentIndex].id);
+        list.forEach((item, idx) => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td>${item.subject.text}</td><td><span style="background:#eee; padding:2px 5px; border-radius:3px;">${item.relation}</span></td><td>${item.object.text}</td><td><button class="del-btn" onclick="removeEntry(${idx})">&times;</button></td>`;
+            outputBody.appendChild(tr);
+        });
+    }
+
+    function renderHighlights() {
+        const textDisplay = document.getElementById('text-display');
+        const list = annotations.filter(a => a.sourceId === rawData[currentIndex].id);
+        const originalText = rawData[currentIndex].content;
+        if (list.length === 0) { textDisplay.innerText = originalText; return; }
+
+        let markers = [];
+        list.forEach(a => {
+            if(a.subject.start > -1) { markers.push({ pos: a.subject.start, type: 'start', cls: 'hl-subject' }); markers.push({ pos: a.subject.end, type: 'end' }); }
+            if(a.object.start > -1) { markers.push({ pos: a.object.start, type: 'start', cls: 'hl-object' }); markers.push({ pos: a.object.end, type: 'end' }); }
+        });
+        markers.sort((a, b) => { if (a.pos !== b.pos) return b.pos - a.pos; return a.type === 'end' ? -1 : 1; });
+
+        let html = originalText;
+        markers.forEach(m => {
+            if (m.type === 'end') html = html.slice(0, m.pos) + "</span>" + html.slice(m.pos);
+            else html = html.slice(0, m.pos) + `<span class="${m.cls}">` + html.slice(m.pos);
+        });
+        textDisplay.innerHTML = html;
+    }
+
+    function exportJSON() {
+        if (annotations.length === 0) return alert("Chưa có dữ liệu!");
+        const datasetOutput = annotations.map(anno => {
+            const parent = rawData.find(d => d.id === anno.sourceId);
+            return { text: parent.content, h: { name: anno.subject.text }, t: { name: anno.object.text }, relation: anno.relation };
+        });
+        const triplesOutput = annotations.map(anno => {
+            const parent = rawData.find(d => d.id === anno.sourceId);
+            return { law: parent.law || "", chapter: parent.chapter || "", article: parent.article || "", subject: anno.subject.text, relation: anno.relation, object: anno.object.text };
+        });
+        function triggerDownload(dataArray, filename) {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(dataArray, null, 2));
+            const a = document.createElement('a'); a.href = dataStr; a.download = filename;
+            document.body.appendChild(a); a.click(); a.remove();
+        }
+        triggerDownload(datasetOutput, "dataset_annotation.json");
+        setTimeout(() => triggerDownload(triplesOutput, "knowledge_triples.json"), 500); 
+    }
+    
+</script>
+</body>
+</html>

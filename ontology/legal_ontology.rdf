@@ -1,0 +1,295 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://example.org/legal-qa#"
+     xml:base="http://example.org/legal-qa"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:legal="http://example.org/legal-qa#">
+    <owl:Ontology rdf:about="http://example.org/legal-qa"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://example.org/legal-qa#apDungCho -->
+
+    <owl:ObjectProperty rdf:about="http://example.org/legal-qa#apDungCho">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/legal-qa#LegalEntity"/>
+        <rdfs:range rdf:resource="http://example.org/legal-qa#LegalEntity"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://example.org/legal-qa#baoDam -->
+
+    <owl:ObjectProperty rdf:about="http://example.org/legal-qa#baoDam">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/legal-qa#LegalEntity"/>
+        <rdfs:range rdf:resource="http://example.org/legal-qa#LegalEntity"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://example.org/legal-qa#baoGom -->
+
+    <owl:ObjectProperty rdf:about="http://example.org/legal-qa#baoGom">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/legal-qa#LegalEntity"/>
+        <rdfs:range rdf:resource="http://example.org/legal-qa#LegalEntity"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://example.org/legal-qa#cam -->
+
+    <owl:ObjectProperty rdf:about="http://example.org/legal-qa#cam">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/legal-qa#LegalEntity"/>
+        <rdfs:range rdf:resource="http://example.org/legal-qa#LegalEntity"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://example.org/legal-qa#choPhep -->
+
+    <owl:ObjectProperty rdf:about="http://example.org/legal-qa#choPhep">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/legal-qa#LegalEntity"/>
+        <rdfs:range rdf:resource="http://example.org/legal-qa#LegalEntity"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://example.org/legal-qa#dinhNghia -->
+
+    <owl:ObjectProperty rdf:about="http://example.org/legal-qa#dinhNghia">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/legal-qa#LegalEntity"/>
+        <rdfs:range rdf:resource="http://example.org/legal-qa#LegalEntity"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://example.org/legal-qa#hasArticle -->
+
+    <owl:ObjectProperty rdf:about="http://example.org/legal-qa#hasArticle">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/legal-qa#Chapter"/>
+        <rdfs:range rdf:resource="http://example.org/legal-qa#Article"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://example.org/legal-qa#hasChapter -->
+
+    <owl:ObjectProperty rdf:about="http://example.org/legal-qa#hasChapter">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/legal-qa#Law"/>
+        <rdfs:range rdf:resource="http://example.org/legal-qa#Chapter"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://example.org/legal-qa#ketNoi -->
+
+    <owl:ObjectProperty rdf:about="http://example.org/legal-qa#ketNoi">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/legal-qa#LegalEntity"/>
+        <rdfs:range rdf:resource="http://example.org/legal-qa#LegalEntity"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://example.org/legal-qa#mentionsEntity -->
+
+    <owl:ObjectProperty rdf:about="http://example.org/legal-qa#mentionsEntity">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/legal-qa#Article"/>
+        <rdfs:range rdf:resource="http://example.org/legal-qa#LegalEntity"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://example.org/legal-qa#mucDich -->
+
+    <owl:ObjectProperty rdf:about="http://example.org/legal-qa#mucDich">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/legal-qa#LegalEntity"/>
+        <rdfs:range rdf:resource="http://example.org/legal-qa#LegalEntity"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://example.org/legal-qa#quyDinhVe -->
+
+    <owl:ObjectProperty rdf:about="http://example.org/legal-qa#quyDinhVe">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/legal-qa#LegalEntity"/>
+        <rdfs:range rdf:resource="http://example.org/legal-qa#LegalEntity"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://example.org/legal-qa#suDung -->
+
+    <owl:ObjectProperty rdf:about="http://example.org/legal-qa#suDung">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/legal-qa#LegalEntity"/>
+        <rdfs:range rdf:resource="http://example.org/legal-qa#LegalEntity"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://example.org/legal-qa#thucHien -->
+
+    <owl:ObjectProperty rdf:about="http://example.org/legal-qa#thucHien">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/legal-qa#LegalEntity"/>
+        <rdfs:range rdf:resource="http://example.org/legal-qa#LegalEntity"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://example.org/legal-qa#yeuCau -->
+
+    <owl:ObjectProperty rdf:about="http://example.org/legal-qa#yeuCau">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/legal-qa#LegalEntity"/>
+        <rdfs:range rdf:resource="http://example.org/legal-qa#LegalEntity"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://example.org/legal-qa#articleNumber -->
+
+    <owl:DatatypeProperty rdf:about="http://example.org/legal-qa#articleNumber">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/legal-qa#Article"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://example.org/legal-qa#chapterCode -->
+
+    <owl:DatatypeProperty rdf:about="http://example.org/legal-qa#chapterCode">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/legal-qa#Chapter"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://example.org/legal-qa#label -->
+
+    <owl:DatatypeProperty rdf:about="http://example.org/legal-qa#label">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/legal-qa#LegalEntity"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://example.org/legal-qa#lawCode -->
+
+    <owl:DatatypeProperty rdf:about="http://example.org/legal-qa#lawCode">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/legal-qa#Law"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://example.org/legal-qa#rawObject -->
+
+    <owl:DatatypeProperty rdf:about="http://example.org/legal-qa#rawObject">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/legal-qa#Article"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://example.org/legal-qa#rawSubject -->
+
+    <owl:DatatypeProperty rdf:about="http://example.org/legal-qa#rawSubject">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/legal-qa#Article"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://example.org/legal-qa#Article -->
+
+    <owl:Class rdf:about="http://example.org/legal-qa#Article"/>
+    
+
+
+    <!-- http://example.org/legal-qa#Chapter -->
+
+    <owl:Class rdf:about="http://example.org/legal-qa#Chapter"/>
+    
+
+
+    <!-- http://example.org/legal-qa#Law -->
+
+    <owl:Class rdf:about="http://example.org/legal-qa#Law"/>
+    
+
+
+    <!-- http://example.org/legal-qa#LegalEntity -->
+
+    <owl:Class rdf:about="http://example.org/legal-qa#LegalEntity"/>
+
+
+    <!-- http://example.org/legal-qa#HanhViViPham -->
+
+    <owl:Class rdf:about="http://example.org/legal-qa#HanhViViPham"/>
+
+
+    <!-- http://example.org/legal-qa#SevereViolation -->
+
+    <owl:Class rdf:about="http://example.org/legal-qa#SevereViolation">
+        <rdfs:subClassOf rdf:resource="http://example.org/legal-qa#HanhViViPham"/>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi -->
+
