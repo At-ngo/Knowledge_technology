@@ -1,0 +1,523 @@
+{
+  "namespace": "http://example.org/legal-qa#",
+  "fuseki": {
+    "default_query_endpoint": "http://localhost:3030/legalqa/query",
+    "inference_query_endpoint": "http://localhost:3030/legalqa-inf/query"
+  },
+  "intent_relations": {
+    "ASK_DEFINITION": [
+      "dinhNghia"
+    ],
+    "ASK_INCLUDES": [
+      "baoGom"
+    ],
+    "ASK_PROHIBITION": [
+      "cam"
+    ],
+    "ASK_PERMISSION": [
+      "choPhep"
+    ],
+    "ASK_REQUIREMENT": [
+      "yeuCau"
+    ],
+    "ASK_RESPONSIBILITY": [
+      "thucHien",
+      "yeuCau",
+      "baoDam"
+    ],
+    "ASK_APPLIES_TO": [
+      "apDungCho"
+    ],
+    "ASK_PURPOSE": [
+      "mucDich"
+    ],
+    "ASK_CONNECTION": [
+      "ketNoi"
+    ],
+    "ASK_USAGE": [
+      "suDung"
+    ],
+    "ASK_LEGAL_BASIS": [
+      "mentionsEntity"
+    ],
+    "ASK_VIOLATION_CHECK": [
+      "cam"
+    ],
+    "ASK_LIST_VIOLATIONS": [
+      "cam"
+    ],
+    "ASK_AGGRAVATION": [
+      "cam"
+    ],
+    "ASK_ARTICLE_CONTENT": []
+  },
+  "entities": {
+    "duong bo": {
+      "label": "đường bộ",
+      "synonyms": [
+        "duong bo",
+        "he thong duong bo"
+      ],
+      "hints": [
+        "DuongBo"
+      ],
+      "domain": "LDB"
+    },
+    "hoat dong duong bo": {
+      "label": "hoạt động đường bộ",
+      "synonyms": [
+        "hoat dong duong bo"
+      ],
+      "hints": [
+        "HoatDongDuongBo"
+      ],
+      "domain": "LDB"
+    },
+    "ket cau ha tang duong bo": {
+      "label": "kết cấu hạ tầng đường bộ",
+      "synonyms": [
+        "ket cau ha tang duong bo",
+        "ha tang duong bo"
+      ],
+      "hints": [
+        "KetCauHaTangDuongBo"
+      ],
+      "domain": "LDB"
+    },
+    "hanh lang an toan duong bo": {
+      "label": "hành lang an toàn đường bộ",
+      "synonyms": [
+        "hanh lang an toan duong bo"
+      ],
+      "hints": [
+        "HanhLangAnToanDuongBo"
+      ],
+      "domain": "LDB"
+    },
+    "cong trinh duong bo": {
+      "label": "công trình đường bộ",
+      "synonyms": [
+        "cong trinh duong bo"
+      ],
+      "hints": [
+        "CongTrinhDuongBo"
+      ],
+      "domain": "LDB"
+    },
+    "co quan quan ly duong bo": {
+      "label": "cơ quan quản lý đường bộ",
+      "synonyms": [
+        "co quan quan ly duong bo"
+      ],
+      "hints": [
+        "CoQuanQuanLyDuongBo"
+      ],
+      "domain": "LDB"
+    },
+    "nguoi quan ly su dung duong bo": {
+      "label": "người quản lý, sử dụng đường bộ",
+      "synonyms": [
+        "nguoi quan ly su dung duong bo",
+        "nguoi quan ly duong bo",
+        "nguoi su dung duong bo"
+      ],
+      "hints": [
+        "NguoiQuanLySuDungDuongBo"
+      ],
+      "domain": "LDB"
+    },
+    "quoc lo": {
+      "label": "quốc lộ",
+      "synonyms": [
+        "quoc lo"
+      ],
+      "hints": [
+        "QuocLo"
+      ],
+      "domain": "LDB"
+    },
+    "duong tinh": {
+      "label": "đường tỉnh",
+      "synonyms": [
+        "duong tinh"
+      ],
+      "hints": [
+        "DuongTinh"
+      ],
+      "domain": "LDB"
+    },
+    "duong huyen": {
+      "label": "đường huyện",
+      "synonyms": [
+        "duong huyen"
+      ],
+      "hints": [
+        "DuongHuyen"
+      ],
+      "domain": "LDB"
+    },
+    "duong xa": {
+      "label": "đường xã",
+      "synonyms": [
+        "duong xa"
+      ],
+      "hints": [
+        "DuongXa"
+      ],
+      "domain": "LDB"
+    },
+    "duong do thi": {
+      "label": "đường đô thị",
+      "synonyms": [
+        "duong do thi"
+      ],
+      "hints": [
+        "DuongDoThi"
+      ],
+      "domain": "LDB"
+    },
+    "duong cao toc": {
+      "label": "đường cao tốc",
+      "synonyms": [
+        "duong cao toc",
+        "cao toc"
+      ],
+      "hints": [
+        "DuongCaoToc"
+      ],
+      "domain": "LDB"
+    },
+    "duong gom": {
+      "label": "đường gom",
+      "synonyms": [
+        "duong gom"
+      ],
+      "hints": [
+        "DuongGom"
+      ],
+      "domain": "LDB"
+    },
+    "duong nhanh": {
+      "label": "đường nhánh",
+      "synonyms": [
+        "duong nhanh"
+      ],
+      "hints": [
+        "DuongNhanh"
+      ],
+      "domain": "LDB"
+    },
+    "ben xe": {
+      "label": "bến xe",
+      "synonyms": [
+        "ben xe"
+      ],
+      "hints": [
+        "BenXe"
+      ],
+      "domain": "LDB"
+    },
+    "bai do xe": {
+      "label": "bãi đỗ xe",
+      "synonyms": [
+        "bai do xe",
+        "bai do"
+      ],
+      "hints": [
+        "BaiDoXe"
+      ],
+      "domain": "LDB"
+    },
+    "tram dung nghi": {
+      "label": "trạm dừng nghỉ",
+      "synonyms": [
+        "tram dung nghi"
+      ],
+      "hints": [
+        "TramDungNghi"
+      ],
+      "domain": "LDB"
+    },
+    "bien bao hieu duong bo": {
+      "label": "biển báo hiệu đường bộ",
+      "synonyms": [
+        "bien bao hieu duong bo",
+        "bien bao"
+      ],
+      "hints": [
+        "BienBaoHieuDuongBo"
+      ],
+      "domain": "LDB"
+    },
+    "den tin hieu giao thong": {
+      "label": "đèn tín hiệu giao thông",
+      "synonyms": [
+        "den tin hieu giao thong"
+      ],
+      "hints": [
+        "DenTinHieuGiaoThong"
+      ],
+      "domain": "TTATGTDB"
+    },
+    "den do": {
+      "label": "đèn đỏ",
+      "synonyms": [
+        "den do",
+        "vuot den do"
+      ],
+      "hints": [
+        "DenDoOTren"
+      ],
+      "domain": "TTATGTDB"
+    },
+    "mu bao hiem": {
+      "label": "mũ bảo hiểm",
+      "synonyms": [
+        "mu bao hiem",
+        "khong doi mu bao hiem",
+        "non bao hiem"
+      ],
+      "hints": [
+        "MuBaoHiemChoNguoiDiXeMoToXeGanMayXeDapMay"
+      ],
+      "domain": "TTATGTDB"
+    },
+    "giay phep lai xe": {
+      "label": "giấy phép lái xe",
+      "synonyms": [
+        "giay phep lai xe",
+        "bang lai",
+        "khong co bang lai"
+      ],
+      "hints": [
+        "GiayPhepLaiXe"
+      ],
+      "domain": "TTATGTDB"
+    },
+    "nong do con": {
+      "label": "nồng độ cồn",
+      "synonyms": [
+        "nong do con",
+        "ruou bia",
+        "con trong mau",
+        "con trong hoi tho"
+      ],
+      "hints": [
+        "MaTrongMauHoacHoiThoCoNongDoCon"
+      ],
+      "domain": "TTATGTDB"
+    },
+    "lan duong": {
+      "label": "làn đường",
+      "synonyms": [
+        "lan duong",
+        "di sai lan",
+        "sai lan"
+      ],
+      "hints": [
+        "LanDuong"
+      ],
+      "domain": "TTATGTDB"
+    },
+    "toc do": {
+      "label": "tốc độ",
+      "synonyms": [
+        "toc do",
+        "qua toc do",
+        "chay qua toc do"
+      ],
+      "hints": [
+        "TocDo"
+      ],
+      "domain": "TTATGTDB"
+    },
+    "bao hieu duong bo": {
+      "label": "báo hiệu đường bộ",
+      "synonyms": [
+        "bao hieu duong bo"
+      ],
+      "hints": [
+        "BaoHieuDuongBo"
+      ],
+      "domain": "TTATGTDB"
+    },
+    "nguoi lao dong": {
+      "label": "người lao động",
+      "synonyms": [
+        "nguoi lao dong",
+        "lao dong"
+      ],
+      "hints": [
+        "NguoiLaoDong"
+      ],
+      "domain": "LLD"
+    },
+    "nguoi su dung lao dong": {
+      "label": "người sử dụng lao động",
+      "synonyms": [
+        "nguoi su dung lao dong",
+        "chu su dung lao dong",
+        "nsdld"
+      ],
+      "hints": [
+        "NguoiSuDungLaoDong"
+      ],
+      "domain": "LLD"
+    },
+    "hop dong lao dong": {
+      "label": "hợp đồng lao động",
+      "synonyms": [
+        "hop dong lao dong",
+        "hdld"
+      ],
+      "hints": [
+        "HopDongLaoDong"
+      ],
+      "domain": "LLD"
+    },
+    "tien luong": {
+      "label": "tiền lương",
+      "synonyms": [
+        "tien luong",
+        "luong"
+      ],
+      "hints": [
+        "TienLuong"
+      ],
+      "domain": "LLD"
+    },
+    "thoi gio lam viec": {
+      "label": "thời giờ làm việc",
+      "synonyms": [
+        "thoi gio lam viec",
+        "gio lam viec"
+      ],
+      "hints": [
+        "ThoiGioLamViec"
+      ],
+      "domain": "LLD"
+    },
+    "thoi gio nghi ngoi": {
+      "label": "thời giờ nghỉ ngơi",
+      "synonyms": [
+        "thoi gio nghi ngoi",
+        "gio nghi ngoi"
+      ],
+      "hints": [
+        "ThoiGioNghiNgoi"
+      ],
+      "domain": "LLD"
+    },
+    "nghi hang nam": {
+      "label": "nghỉ hằng năm",
+      "synonyms": [
+        "nghi hang nam",
+        "nghi phep nam"
+      ],
+      "hints": [
+        "NghiHangNam"
+      ],
+      "domain": "LLD"
+    },
+    "thu viec": {
+      "label": "thử việc",
+      "synonyms": [
+        "thu viec"
+      ],
+      "hints": [
+        "ThuViec"
+      ],
+      "domain": "LLD"
+    },
+    "ky luat lao dong": {
+      "label": "kỷ luật lao động",
+      "synonyms": [
+        "ky luat lao dong",
+        "xu ly ky luat"
+      ],
+      "hints": [
+        "KyLuatLaoDong"
+      ],
+      "domain": "LLD"
+    },
+    "cham dut hop dong lao dong": {
+      "label": "chấm dứt hợp đồng lao động",
+      "synonyms": [
+        "cham dut hop dong lao dong",
+        "ket thuc hop dong lao dong"
+      ],
+      "hints": [
+        "ChamDutHopDongLaoDong"
+      ],
+      "domain": "LLD"
+    },
+    "uy ban nhan dan cac cap": {
+      "label": "ủy ban nhân dân các cấp",
+      "synonyms": [
+        "uy ban nhan dan cac cap",
+        "ubnd cac cap"
+      ],
+      "hints": [
+        "UyBanNhanDanCacCap"
+      ],
+      "domain": "LDB"
+    },
+    "uy ban nhan dan cap xa": {
+      "label": "ủy ban nhân dân cấp xã",
+      "synonyms": [
+        "uy ban nhan dan cap xa",
+        "ubnd cap xa",
+        "chinh quyen cap xa"
+      ],
+      "hints": [
+        "UyBanNhanDanCapXa"
+      ],
+      "domain": "LDB"
+    },
+    "bo giao thong van tai": {
+      "label": "Bộ Giao thông vận tải",
+      "synonyms": [
+        "bo giao thong van tai",
+        "bgvt",
+        "bo gtvt"
+      ],
+      "hints": [
+        "BoGiaoThongVanTai"
+      ],
+      "domain": "LDB"
+    }
+  },
+  "subjects": {
+    "xe may": {
+      "label": "xe máy",
+      "synonyms": [
+        "xe may",
+        "mo to",
+        "xe gan may"
+      ]
+    },
+    "o to": {
+      "label": "ô tô",
+      "synonyms": [
+        "o to",
+        "xe oto",
+        "xe hoi"
+      ]
+    }
+  },
+  "conditions": {
+    "tai pham": {
+      "label": "tái phạm",
+      "synonyms": [
+        "tai pham"
+      ]
+    },
+    "nong do con cao": {
+      "label": "nồng độ cồn cao",
+      "synonyms": [
+        "nong do con cao",
+        "con cao"
+      ]
+    }
+  }
+}
