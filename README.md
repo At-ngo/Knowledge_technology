@@ -20,4 +20,9 @@ Các bước để chạy lại toàn bộ hệ thống:
     - Dùng giao diện SPARQL hoặc script `reasoning/run_inference_demo.py` để gửi các truy vấn kiểm thử module 4 (ví dụ các câu ASK/SELECT trong log).
     - Endpoint `/legalqa/` phục vụ dữ liệu gốc, `/legalqa-inf/` phục vụ dữ liệu đã suy luận.
 
+4. **Chạy test module 5**
+    - Khởi động Fuseki Server.
+    - Chạy file `LegalQaApplication.java`.
+    - Truy cập `http://localhost:8080/`.
+
 ---

@@ -242,6 +242,13 @@ Kết quả:
 - Đã truy vấn được dữ liệu từ ontology/RDF và trả lời cho một số câu hỏi tiêu biểu
 - Đã tích hợp backend bằng Spring Boot và hỗ trợ trả JSON cho giao diện web
 
+Cấu trúc đầu ra của module 5:
+
+{
+"question": "câu hỏi người dùng",
+"answer": "câu trả lời của hệ thống"
+}
+
 Output files:
 
 - `QaController.java`
