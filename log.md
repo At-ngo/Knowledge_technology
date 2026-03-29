@@ -108,28 +108,28 @@ Tasks:
 - Thiết kế ontology bằng Protégé
 - Xây dựng các lớp (Class): Law, Chapter, Article, LegalEntity
 - Xây dựng các ObjectProperty:
-  - hasChapter
-  - hasArticle
-  - mentionsEntity
-  - quyDinhVe
-  - dinhNghia
-  - baoGom
-  - apDungCho
-  - cam
-  - choPhep
-  - yeuCau
-  - baoDam
-  - mucDich
-  - thucHien
-  - suDung
-  - ketNoi
+    - hasChapter
+    - hasArticle
+    - mentionsEntity
+    - quyDinhVe
+    - dinhNghia
+    - baoGom
+    - apDungCho
+    - cam
+    - choPhep
+    - yeuCau
+    - baoDam
+    - mucDich
+    - thucHien
+    - suDung
+    - ketNoi
 - Xây dựng các DataProperty:
-  - lawCode
-  - chapterCode
-  - articleNumber
-  - label
-  - rawSubject
-  - rawObject
+    - lawCode
+    - chapterCode
+    - articleNumber
+    - label
+    - rawSubject
+    - rawObject
 
 - Định nghĩa namespace cho ontology
 
@@ -198,3 +198,57 @@ Kết quả kiểm thử (run_inference_demo.py):
 - `ASK { legal:KetCauHaTangDuongBo legal:baoGom legal:Duong }` ⇒ TRUE (không tồn tại trong dữ liệu gốc).
 - `SELECT ?holder { ?holder legal:apDungCho legal:NguoiDiBoTrenDuongBo }` ⇒ trả về `legal:ThongTin` như kỳ vọng.
 - `SELECT ?action { ?action rdf:type legal:SevereViolation }` ⇒ trả về ba hành vi liên quan nồng độ cồn.
+
+### Module 5 - Legal Question Answering
+
+Status: DONE
+
+Tasks:
+
+- Xây dựng bộ câu hỏi kiểm thử cho hệ thống hỏi đáp pháp luật
+- Thiết kế bộ phân tích câu hỏi tiếng Việt:
+    - chuẩn hóa câu hỏi
+    - nhận diện intent
+    - trích xuất entity
+- Mapping câu hỏi sang ontology concept dựa trên từ điển thực thể và mã luật
+- Sinh truy vấn SPARQL theo từng loại câu hỏi
+- Kết nối Apache Jena Fuseki để truy vấn dữ liệu gốc và dữ liệu suy luận
+- Xây dựng bộ format câu trả lời tiếng Việt
+- Tích hợp module thành backend Spring Boot và hỗ trợ trả JSON cho giao diện web
+
+Mô tả công việc:
+
+Module 5 có nhiệm vụ nhận câu hỏi tiếng Việt từ người dùng, phân tích câu hỏi để xác định intent và entity, sau đó ánh xạ sang ontology concept tương ứng.
+
+Từ thông tin đó, hệ thống sinh truy vấn SPARQL phù hợp, gửi truy vấn tới Fuseki để lấy dữ liệu từ knowledge graph, rồi format lại thành câu trả lời tiếng Việt.
+
+Ngoài ra, module cũng xử lý các trường hợp câu hỏi mơ hồ, ví dụ khi người dùng chỉ hỏi “Điều 2 nói gì?” nhưng không nêu rõ tên luật.
+
+Các nhóm intent chính đã hỗ trợ:
+
+- `ASK_ARTICLE_CONTENT`
+- `ASK_LEGAL_BASIS`
+- `ASK_DEFINITION`
+- `ASK_INCLUDES`
+- `ASK_RESPONSIBILITY`
+- `ASK_VIOLATION_CHECK`
+- `ASK_AGGRAVATION`
+- `ASK_LIST_VIOLATIONS`
+
+Kết quả:
+
+- Hệ thống đã chạy được pipeline:
+  question → intent/entity → SPARQL → Fuseki → answer
+- Đã truy vấn được dữ liệu từ ontology/RDF và trả lời cho một số câu hỏi tiêu biểu
+- Đã tích hợp backend bằng Spring Boot và hỗ trợ trả JSON cho giao diện web
+
+Output files:
+
+- `QaController.java`
+- `QaService.java`
+- `FusekiService.java`
+- `QaResponse.java`
+- `application.yml`
+- `mapping_dictionary.json`
+- `intent_relation_map.json`
+- `index.html`
