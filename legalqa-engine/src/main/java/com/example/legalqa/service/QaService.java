@@ -90,8 +90,14 @@ public class QaService {
         response.setEntities(entities);
 
         if ("UNKNOWN".equals(intent)) {
-            response.setAnswer("Hệ thống chưa nhận diện được loại câu hỏi này. Em hãy thử hỏi rõ hơn, ví dụ: 'Điều 2 của Luật Đường bộ nói gì?' hoặc 'Giấy phép lái xe thuộc điều nào?'");
-            response.setMessage("UNKNOWN_INTENT");
+            String lawLabel = stringValue(entities.get("law_label"));
+            if (!lawLabel.isBlank()) {
+                response.setAnswer("Hệ thống nhận ra bạn đang hỏi " + lawLabel + " nhưng hiện chỉ hỗ trợ chi tiết theo từng Điều/Khoản. Vui lòng nêu rõ số điều hoặc nội dung cụ thể bạn cần.");
+                response.setMessage("LAW_OVERVIEW_UNSUPPORTED");
+            } else {
+                response.setAnswer("Hệ thống chưa nhận diện được loại câu hỏi này. Em hãy thử hỏi rõ hơn, ví dụ: 'Điều 2 của Luật Đường bộ nói gì?' hoặc 'Giấy phép lái xe thuộc điều nào?'");
+                response.setMessage("UNKNOWN_INTENT");
+            }
             response.setResults(Collections.emptyList());
             return response;
         }

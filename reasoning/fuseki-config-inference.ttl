@@ -24,6 +24,9 @@
 :dataset a ja:RDFDataset ;
     ja:defaultGraph :baseModel .
 
+:rawDataset a ja:RDFDataset ;
+    ja:defaultGraph :tdbDefaultGraph .
+
 :service a fuseki:Service ;
     fuseki:name "legalqa-inf" ;
     fuseki:serviceQuery "sparql" ;
@@ -31,3 +34,11 @@
     fuseki:serviceReadWriteGraphStore "data" ;
     fuseki:serviceUpdate "update" ;
     fuseki:dataset :dataset .
+
+:serviceRaw a fuseki:Service ;
+    fuseki:name "legalqa" ;
+    fuseki:serviceQuery "query" ;
+    fuseki:serviceReadGraphStore "get" ;
+    fuseki:serviceReadWriteGraphStore "data" ;
+    fuseki:serviceUpdate "update" ;
+    fuseki:dataset :rawDataset .
