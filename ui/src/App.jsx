@@ -7,7 +7,7 @@ import { createHistoryEntry, filterHistory } from "./state/historyUtils.js";
 import mascotImage from "./assets/image.png";
 
 const DEFAULT_SETTINGS = {
-  apiBase: "http://localhost:8080/api",
+  apiBase: import.meta.env.VITE_API_BASE || "/api",
   useDebugEndpoint: true,
   pinnedIntent: "all",
   useInferenceForIntents: [

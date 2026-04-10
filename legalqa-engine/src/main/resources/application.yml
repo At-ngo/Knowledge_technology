@@ -9,5 +9,5 @@ spring:
 
 app:
   fuseki:
-    base-endpoint: http://localhost:3030/legalqa/query
-    inference-endpoint: http://localhost:3030/legalqa-inf/sparql
+    base-endpoint: ${APP_FUSEKI_BASE_ENDPOINT:http://localhost:3030/legalqa/query}
+    inference-endpoint: ${APP_FUSEKI_INFERENCE_ENDPOINT:http://localhost:3030/legalqa-inf/sparql}
