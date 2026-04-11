@@ -1,0 +1,44 @@
+@prefix :        <#> .
+@prefix ja:      <http://jena.hpl.hp.com/2005/11/Assembler#> .
+@prefix fuseki:  <http://jena.apache.org/fuseki#> .
+@prefix tdb2:    <http://jena.apache.org/2016/tdb#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+[] ja:loadClass "org.apache.jena.sys.JenaSystem" .
+
+:tdbDataset a tdb2:DatasetTDB ;
+    tdb2:location "../Knowledge_technology/tdb-legalqa" .
+
+:tdbDefaultGraph a tdb2:GraphTDB ;
+    tdb2:dataset :tdbDataset .
+
+:reasoner a ja:ReasonerFactory ;
+    ja:reasonerClass "org.apache.jena.reasoner.rulesys.GenericRuleReasonerFactory" ;
+    ja:rulesFrom <file:/E:/CongNgheTriThuc/Knowledge_technology/reasoning/legal_inference.rules> ;
+    ja:mode "forward" .
+
+:baseModel a ja:InfModel ;
+    ja:baseModel :tdbDefaultGraph ;
+    ja:reasoner :reasoner .
+
+:dataset a ja:RDFDataset ;
+    ja:defaultGraph :baseModel .
+
+:rawDataset a ja:RDFDataset ;
+    ja:defaultGraph :tdbDefaultGraph .
+
+:service a fuseki:Service ;
+    fuseki:name "legalqa-inf" ;
+    fuseki:serviceQuery "sparql" ;
+    fuseki:serviceReadGraphStore "get" ;
+    fuseki:serviceReadWriteGraphStore "data" ;
+    fuseki:serviceUpdate "update" ;
+    fuseki:dataset :dataset .
+
+:serviceRaw a fuseki:Service ;
+    fuseki:name "legalqa" ;
+    fuseki:serviceQuery "query" ;
+    fuseki:serviceReadGraphStore "get" ;
+    fuseki:serviceReadWriteGraphStore "data" ;
+    fuseki:serviceUpdate "update" ;
+    fuseki:dataset :rawDataset .

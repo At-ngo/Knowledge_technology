@@ -1,0 +1,42 @@
+@prefix legal: <http://example.org/legal-qa#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+
+# If an entity contains another entity, inheritance is transitive.
+[ChainBaoGom:
+  (?parent legal:baoGom ?child)
+  (?child legal:baoGom ?grandchild)
+  ->
+  (?parent legal:baoGom ?grandchild)
+]
+
+# Any scope that applies to a group also applies to every subgroup/member of that group.
+[ApplyScopeToMembers:
+  (?holder legal:apDungCho ?group)
+  (?group legal:baoGom ?member)
+  ->
+  (?holder legal:apDungCho ?member)
+]
+
+# When something is explicitly forbidden, tag the forbidden action as a violation.
+[BanImpliesViolation:
+  (?actor legal:cam ?action)
+  ->
+  (?action rdf:type legal:HanhViViPham)
+]
+
+# High alcohol concentration cases are considered severe violations.
+[HighAlcoholSeverity:
+  (?action legal:label ?label)
+  regex(?label, "nồng độ cồn", "i")
+  ->
+  (?action rdf:type legal:SevereViolation)
+]
+
+# If an article references a banning entity, also link the banned action for easier SPARQL queries.
+[ArticleMentionsBannedAction:
+  (?article legal:mentionsEntity ?actor)
+  (?actor legal:cam ?action)
+  ->
+  (?article legal:mentionsEntity ?action)
+]

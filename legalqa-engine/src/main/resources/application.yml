@@ -1,0 +1,13 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: legalqa-module5
+  thymeleaf:
+    cache: false
+
+app:
+  fuseki:
+    base-endpoint: ${APP_FUSEKI_BASE_ENDPOINT:http://localhost:3030/legalqa/query}
+    inference-endpoint: ${APP_FUSEKI_INFERENCE_ENDPOINT:http://localhost:3030/legalqa-inf/sparql}

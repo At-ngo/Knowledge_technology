@@ -1,0 +1,17 @@
+{
+  "ASK_DEFINITION": ["dinhNghia"],
+  "ASK_INCLUDES": ["baoGom"],
+  "ASK_PROHIBITION": ["cam"],
+  "ASK_PERMISSION": ["choPhep"],
+  "ASK_REQUIREMENT": ["yeuCau"],
+  "ASK_RESPONSIBILITY": ["thucHien", "yeuCau", "baoDam"],
+  "ASK_APPLIES_TO": ["apDungCho"],
+  "ASK_PURPOSE": ["mucDich"],
+  "ASK_CONNECTION": ["ketNoi"],
+  "ASK_USAGE": ["suDung"],
+  "ASK_LEGAL_BASIS": ["mentionsEntity"],
+  "ASK_VIOLATION_CHECK": ["cam"],
+  "ASK_LIST_VIOLATIONS": ["cam"],
+  "ASK_AGGRAVATION": ["cam"],
+  "ASK_ARTICLE_CONTENT": []
+}

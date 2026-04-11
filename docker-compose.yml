@@ -1,0 +1,39 @@
+services:
+  fuseki:
+    build:
+      context: ..
+      dockerfile: Knowledge_technology/deploy/fuseki/Dockerfile
+    container_name: legalqa-fuseki
+    restart: unless-stopped
+    ports:
+      - "3030:3030"
+    volumes:
+      - fuseki-data:/var/lib/fuseki
+
+  backend:
+    build:
+      context: ..
+      dockerfile: Knowledge_technology/deploy/backend/Dockerfile
+    container_name: legalqa-backend
+    restart: unless-stopped
+    depends_on:
+      - fuseki
+    environment:
+      APP_FUSEKI_BASE_ENDPOINT: http://fuseki:3030/legalqa/query
+      APP_FUSEKI_INFERENCE_ENDPOINT: http://fuseki:3030/legalqa-inf/sparql
+    ports:
+      - "8080:8080"
+
+  frontend:
+    build:
+      context: ..
+      dockerfile: Knowledge_technology/deploy/ui/Dockerfile
+    container_name: legalqa-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+
+volumes:
+  fuseki-data:

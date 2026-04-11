@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Legal QA</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                max-width: 800px;
+                margin: 40px auto;
+                padding: 0 16px;
+                line-height: 1.5;
+            }
+            h1 {
+                margin-bottom: 20px;
+            }
+            form {
+                display: flex;
+                gap: 10px;
+                margin-bottom: 24px;
+            }
+            input[type="text"] {
+                flex: 1;
+                padding: 10px;
+                font-size: 16px;
+            }
+            button {
+                padding: 10px 16px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+            .card {
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                padding: 16px;
+                margin-top: 16px;
+                background: #fafafa;
+            }
+            .label {
+                font-weight: bold;
+                margin-bottom: 6px;
+            }
+            .value {
+                white-space: pre-wrap;
+            }
+            .error {
+                color: #b00020;
+                margin-top: 12px;
+                white-space: pre-wrap;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Hệ thống hỏi đáp pháp luật</h1>
+
+        <form id="qaForm">
+            <input
+                type="text"
+                id="question"
+                placeholder="Nhập câu hỏi"
+                required
+            />
+            <button type="submit">Hỏi</button>
+        </form>
+
+        <div id="loading" style="display: none">Đang xử lý...</div>
+        <div id="error" class="error"></div>
+
+        <div id="result" style="display: none">
+            <div class="card">
+                <div class="label">Câu hỏi</div>
+                <div class="value" id="questionText"></div>
+            </div>
+
+            <div class="card">
+                <div class="label">Câu trả lời</div>
+                <div class="value" id="answerText"></div>
+            </div>
+        </div>
+
+        <script>
+            const form = document.getElementById("qaForm");
+            const questionInput = document.getElementById("question");
+            const loading = document.getElementById("loading");
+            const errorDiv = document.getElementById("error");
+            const resultDiv = document.getElementById("result");
+            const questionText = document.getElementById("questionText");
+            const answerText = document.getElementById("answerText");
+
+            form.addEventListener("submit", async function (e) {
+                e.preventDefault();
+
+                const question = questionInput.value.trim();
+                if (!question) return;
+
+                loading.style.display = "block";
+                errorDiv.textContent = "";
+                resultDiv.style.display = "none";
+
+                try {
+                    const response = await fetch("/api/ask", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ question }),
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(
+                            "HTTP " +
+                                response.status +
+                                " - " +
+                                response.statusText,
+                        );
+                    }
+
+                    const data = await response.json();
+
+                    questionText.textContent = data.question || question;
+                    answerText.textContent =
+                        data.answer || "Không có câu trả lời.";
+                    resultDiv.style.display = "block";
+                } catch (err) {
+                    errorDiv.textContent = "Có lỗi khi gọi API: " + err.message;
+                } finally {
+                    loading.style.display = "none";
+                }
+            });
+        </script>
+    </body>
+</html>
