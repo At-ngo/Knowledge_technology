@@ -102,6 +102,9 @@ public class QaService {
             return response;
         }
 
+        String endpoint = chooseEndpoint(intent);
+        response.setEndpoint(endpoint);
+
         if (isAmbiguousLawQuestion(intent, entities)) {
             response.setAnswer("Câu hỏi chưa đủ rõ vì hệ thống đang có nhiều bộ luật. Vui lòng nêu rõ tên luật, ví dụ: 'Điều 2 của Luật Đường bộ nói gì?'");
             response.setMessage("AMBIGUOUS_LAW");
@@ -118,9 +121,6 @@ public class QaService {
             response.setResults(Collections.emptyList());
             return response;
         }
-
-        String endpoint = chooseEndpoint(intent);
-        response.setEndpoint(endpoint);
 
         try {
             List<Map<String, String>> results = fusekiService.query(endpoint, sparql);
@@ -179,12 +179,12 @@ public class QaService {
         if (containsAny(q, "phat bao nhieu", "muc phat", "bi phat the nao")) return "ASK_PENALTY";
         if (matchesArticleContent(q)) return "ASK_ARTICLE_CONTENT";
         if (containsAny(q, "thuoc dieu nao", "dieu nao quy dinh", "can cu phap ly", "thuoc khoan nao")) return "ASK_LEGAL_BASIS";
+        if (containsAny(q, "nhung hanh vi vi pham nao", "danh sach hanh vi vi pham", "liet ke hanh vi vi pham")) return "ASK_LIST_VIOLATIONS";
         if (containsAny(q, "la gi", "dinh nghia", "khai niem")) return "ASK_DEFINITION";
         if (containsAny(q, "bao gom nhung gi", "gom nhung gi", "bao gom gi", "bao gom cac gi")) return "ASK_INCLUDES";
         if (containsAny(q, "co trach nhiem gi", "trach nhiem gi", "phai lam gi")) return "ASK_RESPONSIBILITY";
         if (containsAny(q, "co phai vi pham khong", "co vi pham khong")) return "ASK_VIOLATION_CHECK";
         if (containsAny(q, "nghiem trong khong", "co nghiem trong khong")) return "ASK_AGGRAVATION";
-        if (containsAny(q, "nhung hanh vi vi pham nao", "danh sach hanh vi vi pham", "liet ke hanh vi vi pham")) return "ASK_LIST_VIOLATIONS";
         if (containsAny(q, "ap dung cho ai", "doi tuong ap dung", "ap dung cho")) return "ASK_APPLIES_TO";
         if (containsAny(q, "cho phep", "duoc phep")) return "ASK_PERMISSION";
         if (containsAny(q, "cam", "bi cam")) return "ASK_PROHIBITION";

@@ -1,0 +1,257 @@
+[
+  {
+    "id": "article_content_01",
+    "question": "Điều 2 của Luật Đường bộ nói gì?",
+    "expected_intent": "ASK_ARTICLE_CONTENT"
+  },
+  {
+    "id": "article_content_02",
+    "question": "Nội dung Điều 3 Luật Đường bộ là gì?",
+    "expected_intent": "ASK_ARTICLE_CONTENT"
+  },
+  {
+    "id": "article_content_03",
+    "question": "Điều 10 của Luật giao thông đường bộ quy định gì?",
+    "expected_intent": "ASK_ARTICLE_CONTENT"
+  },
+  {
+    "id": "article_content_04",
+    "question": "Cho tôi biết Điều 5 Bộ luật Lao động",
+    "expected_intent": "ASK_ARTICLE_CONTENT"
+  },
+  {
+    "id": "article_content_05_ambiguous",
+    "question": "Điều 2 nói gì?",
+    "expected_intent": "ASK_ARTICLE_CONTENT",
+    "expected_message": "AMBIGUOUS_LAW",
+    "expected_success": false,
+    "expected_answer_contains": ["Câu hỏi chưa đủ rõ"]
+  },
+  {
+    "id": "legal_basis_01",
+    "question": "Giấy phép lái xe thuộc điều nào của Luật Đường bộ?",
+    "expected_intent": "ASK_LEGAL_BASIS"
+  },
+  {
+    "id": "legal_basis_02",
+    "question": "Hành vi vượt đèn đỏ điều nào quy định?",
+    "expected_intent": "ASK_LEGAL_BASIS"
+  },
+  {
+    "id": "legal_basis_03",
+    "question": "Quy định về xe ưu tiên căn cứ pháp lý nào?",
+    "expected_intent": "ASK_LEGAL_BASIS"
+  },
+  {
+    "id": "legal_basis_04_ambiguous",
+    "question": "Khoản 1 thuộc điều nào?",
+    "expected_intent": "ASK_LEGAL_BASIS"
+  },
+  {
+    "id": "definition_01",
+    "question": "Hoạt động đường bộ là gì?",
+    "expected_intent": "ASK_DEFINITION"
+  },
+  {
+    "id": "definition_02",
+    "question": "Định nghĩa kết cấu hạ tầng đường bộ là gì?",
+    "expected_intent": "ASK_DEFINITION"
+  },
+  {
+    "id": "definition_03",
+    "question": "Khái niệm đường bộ là gì?",
+    "expected_intent": "ASK_DEFINITION"
+  },
+  {
+    "id": "definition_04",
+    "question": "Công trình đường bộ là gì?",
+    "expected_intent": "ASK_DEFINITION"
+  },
+  {
+    "id": "includes_01",
+    "question": "Đường bộ bao gồm những gì?",
+    "expected_intent": "ASK_INCLUDES"
+  },
+  {
+    "id": "includes_02",
+    "question": "Kết cấu hạ tầng đường bộ gồm những gì?",
+    "expected_intent": "ASK_INCLUDES"
+  },
+  {
+    "id": "includes_03",
+    "question": "Hoạt động đường bộ bao gồm gì?",
+    "expected_intent": "ASK_INCLUDES"
+  },
+  {
+    "id": "includes_04",
+    "question": "Công trình đường bộ bao gồm các gì?",
+    "expected_intent": "ASK_INCLUDES"
+  },
+  {
+    "id": "responsibility_01",
+    "question": "Cơ quan quản lý có trách nhiệm gì?",
+    "expected_intent": "ASK_RESPONSIBILITY"
+  },
+  {
+    "id": "responsibility_02",
+    "question": "Người tham gia giao thông phải làm gì?",
+    "expected_intent": "ASK_RESPONSIBILITY"
+  },
+  {
+    "id": "responsibility_03",
+    "question": "Đơn vị vận tải trách nhiệm gì?",
+    "expected_intent": "ASK_RESPONSIBILITY"
+  },
+  {
+    "id": "applies_to_01",
+    "question": "Quy định này áp dụng cho ai?",
+    "expected_intent": "ASK_APPLIES_TO"
+  },
+  {
+    "id": "applies_to_02",
+    "question": "Đối tượng áp dụng của luật này là gì?",
+    "expected_intent": "ASK_APPLIES_TO"
+  },
+  {
+    "id": "permission_01",
+    "question": "Xe cứu thương có được phép đi ngược chiều không?",
+    "expected_intent": "ASK_PERMISSION"
+  },
+  {
+    "id": "permission_02",
+    "question": "Người lái xe được phép dừng ở đây không?",
+    "expected_intent": "ASK_PERMISSION"
+  },
+  {
+    "id": "prohibition_01",
+    "question": "Hành vi vượt đèn đỏ có bị cấm không?",
+    "expected_intent": "ASK_PROHIBITION"
+  },
+  {
+    "id": "prohibition_02",
+    "question": "Điều khiển xe khi say rượu có cấm không?",
+    "expected_intent": "ASK_PROHIBITION"
+  },
+  {
+    "id": "requirement_01",
+    "question": "Yêu cầu đối với người lái xe là gì?",
+    "expected_intent": "ASK_REQUIREMENT"
+  },
+  {
+    "id": "requirement_02",
+    "question": "Người điều khiển phương tiện cần phải có giấy tờ gì?",
+    "expected_intent": "ASK_REQUIREMENT"
+  },
+  {
+    "id": "purpose_01",
+    "question": "Mục đích của quy định an toàn giao thông là gì?",
+    "expected_intent": "ASK_PURPOSE"
+  },
+  {
+    "id": "purpose_02",
+    "question": "Biển báo được đặt để làm gì?",
+    "expected_intent": "ASK_PURPOSE"
+  },
+  {
+    "id": "connection_01",
+    "question": "Hệ thống giám sát kết nối với gì?",
+    "expected_intent": "ASK_CONNECTION"
+  },
+  {
+    "id": "connection_02",
+    "question": "Thiết bị này nối với trung tâm như thế nào?",
+    "expected_intent": "ASK_CONNECTION"
+  },
+  {
+    "id": "usage_01",
+    "question": "Giấy phép lái xe sử dụng như thế nào?",
+    "expected_intent": "ASK_USAGE"
+  },
+  {
+    "id": "usage_02",
+    "question": "Làn đường ưu tiên sử dụng ra sao?",
+    "expected_intent": "ASK_USAGE"
+  },
+  {
+    "id": "inference_violation_01",
+    "question": "Người lái xe có vi phạm không?",
+    "expected_intent": "ASK_VIOLATION_CHECK",
+    "expected_endpoint_contains": "legalqa-inf"
+  },
+  {
+    "id": "inference_violation_02",
+    "question": "Hành vi này có phải vi phạm không?",
+    "expected_intent": "ASK_VIOLATION_CHECK",
+    "expected_endpoint_contains": "legalqa-inf"
+  },
+  {
+    "id": "inference_aggravation_01",
+    "question": "Hành vi này có nghiêm trọng không?",
+    "expected_intent": "ASK_AGGRAVATION",
+    "expected_endpoint_contains": "legalqa-inf"
+  },
+  {
+    "id": "inference_aggravation_02",
+    "question": "Vi phạm này nghiêm trọng không?",
+    "expected_intent": "ASK_AGGRAVATION",
+    "expected_endpoint_contains": "legalqa-inf"
+  },
+  {
+    "id": "inference_list_01",
+    "question": "Danh sách hành vi vi phạm là gì?",
+    "expected_intent": "ASK_LIST_VIOLATIONS",
+    "expected_endpoint_contains": "legalqa-inf"
+  },
+  {
+    "id": "inference_list_02",
+    "question": "Liệt kê hành vi vi phạm trong lĩnh vực đường bộ",
+    "expected_intent": "ASK_LIST_VIOLATIONS",
+    "expected_endpoint_contains": "legalqa-inf"
+  },
+  {
+    "id": "penalty_01",
+    "question": "Vượt đèn đỏ bị phạt bao nhiêu?",
+    "expected_intent": "ASK_PENALTY",
+    "expected_message": "UNSUPPORTED_QUERY",
+    "expected_success": false
+  },
+  {
+    "id": "penalty_02",
+    "question": "Mức phạt cho hành vi đi sai làn là gì?",
+    "expected_intent": "ASK_PENALTY",
+    "expected_message": "UNSUPPORTED_QUERY",
+    "expected_success": false
+  },
+  {
+    "id": "unknown_01",
+    "question": "Hôm nay trời đẹp không?",
+    "expected_intent": "UNKNOWN",
+    "expected_message": "UNKNOWN_INTENT",
+    "expected_success": false,
+    "expected_answer_contains": [
+      "Hệ thống chưa nhận diện được loại câu hỏi này"
+    ]
+  },
+  {
+    "id": "unknown_02",
+    "question": "Bạn khỏe không?",
+    "expected_intent": "UNKNOWN",
+    "expected_message": "UNKNOWN_INTENT",
+    "expected_success": false
+  },
+  {
+    "id": "unknown_law_overview_01",
+    "question": "Cho tôi biết về Luật đường bộ",
+    "expected_intent": "UNKNOWN",
+    "expected_message": "LAW_OVERVIEW_UNSUPPORTED",
+    "expected_success": false,
+    "expected_answer_contains": ["hỗ trợ chi tiết theo từng Điều/Khoản"]
+  },
+  {
+    "id": "unknown_law_overview_02",
+    "question": "Tóm tắt Luật lao động giúp tôi",
+    "expected_intent": "UNKNOWN",
+    "expected_message": "LAW_OVERVIEW_UNSUPPORTED",
+    "expected_success": false
+  }
+]

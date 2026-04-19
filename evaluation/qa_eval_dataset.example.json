@@ -1,0 +1,58 @@
+[
+  {
+    "id": "intent_definition_1",
+    "question": "Hoạt động đường bộ là gì?",
+    "expected_intent": "ASK_DEFINITION",
+    "expected_success": true,
+    "expected_message": "OK",
+    "expected_answer_contains": ["hoạt động đường bộ"],
+    "expected_min_result_count": 1,
+    "expected_endpoint_contains": "legalqa"
+  },
+  {
+    "id": "article_content_1",
+    "question": "Điều 2 của Luật Đường bộ nói gì?",
+    "expected_intent": "ASK_ARTICLE_CONTENT",
+    "expected_success": true,
+    "expected_answer_contains": ["Điều 2"],
+    "expected_endpoint_contains": "legalqa"
+  },
+  {
+    "id": "unknown_1",
+    "question": "Hôm nay trời đẹp không?",
+    "expected_intent": "UNKNOWN",
+    "expected_success": false,
+    "expected_message": "UNKNOWN_INTENT"
+  },
+  {
+    "id": "inference_1",
+    "question": "Người lái xe có vi phạm không?",
+    "expected_intent": "ASK_VIOLATION_CHECK",
+    "expected_endpoint_contains": "legalqa-inf"
+  },
+  {
+    "id": "retrieval_precision_1",
+    "question": "Luật Đường bộ định nghĩa gì về xe cơ giới?",
+    "expected_result_titles": ["Luật Đường bộ", "định nghĩa"],
+    "expected_min_f1": 0.5,
+    "legal_correctness": true,
+    "completeness": true,
+    "has_hallucination": false
+  },
+  {
+    "id": "legal_correctness_1",
+    "question": "Điều 5 Luật Đường bộ quy định về điều kiện lái xe?",
+    "expected_success": true,
+    "legal_correctness": true,
+    "completeness": true,
+    "has_hallucination": false
+  },
+  {
+    "id": "completeness_check_1",
+    "question": "Tóm tắt toàn bộ Luật Đường bộ?",
+    "expected_answer_contains": ["Luật Đường bộ"],
+    "completeness": false,
+    "has_hallucination": false,
+    "expected_endpoint_contains": "legalqa-inf"
+  }
+]
