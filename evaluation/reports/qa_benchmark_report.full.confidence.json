@@ -1,0 +1,36 @@
+{
+  "meta": {
+    "target_url": "http://localhost:8080/api/ask/debug",
+    "dataset": "Knowledge_technology\\evaluation\\qa_eval_dataset.full.json",
+    "executed_at_epoch": 1776587298,
+    "cases_executed": 46,
+    "source_report": "Knowledge_technology\\evaluation\\reports\\qa_benchmark_report.full.json"
+  },
+  "confidence": {
+    "overall_confidence_score": 0.8003,
+    "metrics": {
+      "intent_accuracy": 0.9348,
+      "answer_exact_accuracy": 0.0,
+      "answer_contains_accuracy": 1.0,
+      "answer_regex_accuracy": 0.0,
+      "answer_token_f1": 1.0,
+      "success_accuracy": 1.0,
+      "message_accuracy": 1.0,
+      "endpoint_accuracy": 1.0,
+      "request_success_rate": 1.0,
+      "strict_pass_rate": 0.9348,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_retrieval": 1.0,
+      "legal_correctness": 0.9348,
+      "completeness": 1.0,
+      "hallucination_rate": 0.0
+    },
+    "latency_ms": {
+      "avg": 409.7,
+      "p50": 30.87,
+      "p95": 1520.21,
+      "max": 7926.93
+    }
+  }
+}

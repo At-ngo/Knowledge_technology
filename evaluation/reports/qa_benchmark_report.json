@@ -1,0 +1,2607 @@
+{
+  "meta": {
+    "target_url": "http://localhost:8080/api/ask/debug",
+    "dataset": "Knowledge_technology\\evaluation\\qa_eval_dataset.example.json",
+    "executed_at_epoch": 1776587263,
+    "cases_executed": 7
+  },
+  "summary": {
+    "total_cases": 7,
+    "strict_pass": {
+      "passed": 3,
+      "rate": 0.4286
+    },
+    "metrics": {
+      "intent_accuracy": {
+        "eligible": 4,
+        "correct": 4,
+        "accuracy": 1.0
+      },
+      "success_accuracy": {
+        "eligible": 4,
+        "correct": 3,
+        "accuracy": 0.75
+      },
+      "message_accuracy": {
+        "eligible": 2,
+        "correct": 1,
+        "accuracy": 0.5
+      },
+      "endpoint_accuracy": {
+        "eligible": 4,
+        "correct": 3,
+        "accuracy": 0.75
+      },
+      "result_count_accuracy": {
+        "eligible": 1,
+        "correct": 0,
+        "accuracy": 0.0
+      },
+      "answer_exact_accuracy": {
+        "eligible": 0,
+        "correct": 0,
+        "accuracy": 0.0
+      },
+      "answer_contains_accuracy": {
+        "eligible": 3,
+        "correct": 2,
+        "accuracy": 0.6667
+      },
+      "answer_regex_accuracy": {
+        "eligible": 0,
+        "correct": 0,
+        "accuracy": 0.0
+      },
+      "request_success_rate": {
+        "eligible": 7,
+        "correct": 7,
+        "accuracy": 1.0
+      },
+      "answer_token_f1": {
+        "eligible": 0,
+        "average_f1": 0.5
+      },
+      "precision": {
+        "eligible": 4,
+        "average": 0.5
+      },
+      "recall": {
+        "eligible": 4,
+        "average": 0.5
+      },
+      "f1_retrieval": {
+        "eligible": 4,
+        "average": 0.5
+      },
+      "legal_correctness": {
+        "eligible": 7,
+        "correct": 3,
+        "accuracy": 0.4286
+      },
+      "completeness": {
+        "eligible": 7,
+        "correct": 6,
+        "accuracy": 0.8571
+      },
+      "no_hallucination": {
+        "eligible": 7,
+        "correct": 7,
+        "accuracy": 1.0
+      }
+    },
+    "latency_ms": {
+      "avg": 1322.76,
+      "p50": 129.16,
+      "p95": 6131.53,
+      "max": 8617.83
+    }
+  },
+  "failed_cases": [
+    {
+      "id": "intent_definition_1",
+      "question": "Hoạt động đường bộ là gì?",
+      "failed_checks": [
+        "success_match",
+        "message_match",
+        "result_count_match",
+        "answer_contains_match",
+        "legal_correctness"
+      ],
+      "request_error": null,
+      "prediction": {
+        "intent": "ASK_DEFINITION",
+        "success": false,
+        "message": "NO_RESULT",
+        "endpoint": "http://fuseki:3030/legalqa/query",
+        "answer": "Không tìm thấy định nghĩa phù hợp.",
+        "result_count": 0
+      }
+    },
+    {
+      "id": "retrieval_precision_1",
+      "question": "Luật Đường bộ định nghĩa gì về xe cơ giới?",
+      "failed_checks": [
+        "f1_match",
+        "legal_correctness"
+      ],
+      "request_error": null,
+      "prediction": {
+        "intent": "ASK_DEFINITION",
+        "success": true,
+        "message": "OK",
+        "endpoint": "http://fuseki:3030/legalqa/query",
+        "answer": "quỹ giảm thiểu thiệt hại tai nạn giao thông đường bộ: quỹ tài chính nhà nước ngoài ngân sách\ntai nạn giao thông đường bộ: va chạm liên quan đến người, phương tiện khi tham gia giao thông đường bộ, xảy ra ngoài ý muốn của người tham gia giao thông đường bộ, gây thiệt hại đến tính mạng, sức khỏe, tài sản của cá nhân hoặc tài sản của cơ quan, tổ chức\nđiều khiển giao thông đường bộ: hoạt động trực tiếp hướng dẫn giao thông đường bộ bảo đảm trật tự, an toàn, thông suốt\nchỉ huy giao thông đường bộ: tổng hợp các hoạt động thu thập, phân tích, đánh giá các yếu tố có liên quan để đưa ra các giải pháp điều hành hoạt động giao thông đường bộ trật tự, an toàn, thông suốt\nthiết bị thông minh hỗ trợ chỉ huy, điều khiển giao thông đường bộ: thiết bị kỹ thuật công nghệ có khả năng phát hiện, phân tích, đánh giá các tình huống giao thông đường bộ, vi phạm pháp luật trên đường bộ; do lực lượng chức năng sử dụng để hỗ trợ chỉ huy, điều khiển giao thông đường bộ, giải quyết tình huống và xử lý vi phạm pháp luật trên đường bộ\nCăn cứ pháp lý: Luật Trật tự, an toàn giao thông đường bộ, Điều 85; Luật Trật tự, an toàn giao thông đường bộ, Điều 76; Luật Trật tự, an toàn giao thông đường bộ, Điều 7; Luật Trật tự, an toàn giao thông đường bộ, Điều 2; Luật Trật tự, an toàn giao thông đường bộ, Điều 74.",
+        "result_count": 73
+      }
+    },
+    {
+      "id": "legal_correctness_1",
+      "question": "Điều 5 Luật Đường bộ quy định về điều kiện lái xe?",
+      "failed_checks": [
+        "legal_correctness"
+      ],
+      "request_error": null,
+      "prediction": {
+        "intent": "ASK_ARTICLE_CONTENT",
+        "success": true,
+        "message": "OK",
+        "endpoint": "http://fuseki:3030/legalqa/query",
+        "answer": "Trích dẫn điều luật: Luật Đường bộ, Điều 5.\nNội dung liên quan:\n- Bộ Giao thông vận tải → 10 năm, tầm nhìn từ 20 năm đến 30 năm\n- Chính phủ → 10 năm, tầm nhìn từ 20 năm đến 30 năm\n- Nội dung về phát triển đường bộ đô thị → 10 năm, tầm nhìn từ 20 năm đến 30 năm\n- Quy hoạch kết cấu hạ tầng đường bộ → 10 năm, tầm nhìn từ 20 năm đến 30 năm\n- Quy hoạch mạng lưới đường bộ → 10 năm, tầm nhìn từ 20 năm đến 30 năm\nThực thể được nhắc tới: 10 năm, tầm nhìn từ 20 năm đến 30 năm",
+        "result_count": 100
+      }
+    },
+    {
+      "id": "completeness_check_1",
+      "question": "Tóm tắt toàn bộ Luật Đường bộ?",
+      "failed_checks": [
+        "endpoint_match",
+        "legal_correctness",
+        "completeness"
+      ],
+      "request_error": null,
+      "prediction": {
+        "intent": "UNKNOWN",
+        "success": false,
+        "message": "LAW_OVERVIEW_UNSUPPORTED",
+        "endpoint": null,
+        "answer": "Hệ thống nhận ra bạn đang hỏi Luật Đường bộ nhưng hiện chỉ hỗ trợ chi tiết theo từng Điều/Khoản. Vui lòng nêu rõ số điều hoặc nội dung cụ thể bạn cần.",
+        "result_count": 0
+      }
+    }
+  ],
+  "case_results": [
+    {
+      "id": "intent_definition_1",
+      "question": "Hoạt động đường bộ là gì?",
+      "checks": {
+        "request_ok": true,
+        "intent_match": true,
+        "success_match": false,
+        "message_match": false,
+        "endpoint_match": true,
+        "result_count_match": false,
+        "answer_contains_match": false,
+        "legal_correctness": false,
+        "completeness": true,
+        "no_hallucination": true
+      },
+      "strict_pass": false,
+      "details": {
+        "pred_intent": "ASK_DEFINITION",
+        "pred_success": false,
+        "pred_message": "NO_RESULT",
+        "pred_endpoint": "http://fuseki:3030/legalqa/query",
+        "pred_result_count": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "legal_correctness_auto": false,
+        "completeness_auto": true,
+        "answer_length": 34,
+        "hallucination_auto": false
+      },
+      "prediction": {
+        "intent": "ASK_DEFINITION",
+        "success": false,
+        "message": "NO_RESULT",
+        "endpoint": "http://fuseki:3030/legalqa/query",
+        "answer": "Không tìm thấy định nghĩa phù hợp.",
+        "result_count": 0
+      },
+      "raw_response": {
+        "success": false,
+        "message": "NO_RESULT",
+        "question": "Hoạt động đường bộ là gì?",
+        "questionNorm": "hoat dong duong bo la gi",
+        "intent": "ASK_DEFINITION",
+        "entities": {
+          "question_norm": "hoat dong duong bo la gi",
+          "entity_key": "hoat dong duong bo",
+          "entity_label": "hoạt động đường bộ",
+          "domain": "LDB",
+          "entity_hints": [
+            "HoatDongDuongBo"
+          ]
+        },
+        "endpoint": "http://fuseki:3030/legalqa/query",
+        "sparql": "PREFIX legal: <http://example.org/legal-qa#>\nPREFIX rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>\nSELECT DISTINCT ?entity ?entityLabel ?subjectLabel ?relationName ?objectLabel ?lawCode ?articleNumber\nWHERE {\n    ?entity legal:label ?entityLabel .\n    FILTER(STRENDS(STR(?entity), \"#HoatDongDuongBo\") || LCASE(STR(?entityLabel)) = LCASE(\"hoạt động đường bộ\") || STRSTARTS(LCASE(STR(?entityLabel)), LCASE(\"hoạt động đường bộ\")) || CONTAINS(LCASE(STR(?entityLabel)), LCASE(\"hoạt động đường bộ\")))\n\n    ?subject ?rel ?object .\n    ?subject legal:label ?subjectLabel .\n    ?object legal:label ?objectLabel .\n    FILTER(?subject = ?entity)\n    FILTER(STRENDS(STR(?rel), \"#dinhNghia\"))\n\n    BIND(REPLACE(STR(?rel), \".*#\", \"\") AS ?relationName)\n\n    OPTIONAL {\n        ?article rdf:type legal:Article ;\n                 legal:mentionsEntity ?subject ;\n                 legal:articleNumber ?articleNumber .\n        ?law legal:hasChapter/legal:hasArticle ?article ; legal:lawCode ?lawCode .\n    }\n}\nLIMIT 100\n",
+        "answer": "Không tìm thấy định nghĩa phù hợp.",
+        "results": [],
+        "error": null
+      },
+      "request_error": null
+    },
+    {
+      "id": "article_content_1",
+      "question": "Điều 2 của Luật Đường bộ nói gì?",
+      "checks": {
+        "request_ok": true,
+        "intent_match": true,
+        "success_match": true,
+        "endpoint_match": true,
+        "answer_contains_match": true,
+        "legal_correctness": true,
+        "completeness": true,
+        "no_hallucination": true
+      },
+      "strict_pass": true,
+      "details": {
+        "pred_intent": "ASK_ARTICLE_CONTENT",
+        "pred_success": true,
+        "pred_endpoint": "http://fuseki:3030/legalqa/query",
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "legal_correctness_auto": true,
+        "completeness_auto": true,
+        "answer_length": 283,
+        "hallucination_auto": false
+      },
+      "prediction": {
+        "intent": "ASK_ARTICLE_CONTENT",
+        "success": true,
+        "message": "OK",
+        "endpoint": "http://fuseki:3030/legalqa/query",
+        "answer": "Trích dẫn điều luật: Luật Đường bộ, Điều 2.\nNội dung liên quan:\n- Công trình đường bộ → bãi đỗ xe\n- Cơ quan quản lý đường bộ → bãi đỗ xe\n- Hoạt động đường bộ → bãi đỗ xe\n- Hành lang an toàn đường bộ → bãi đỗ xe\n- Kết cấu hạ tầng đường bộ → bãi đỗ xe\nThực thể được nhắc tới: bãi đỗ xe",
+        "result_count": 100
+      },
+      "raw_response": {
+        "success": true,
+        "message": "OK",
+        "question": "Điều 2 của Luật Đường bộ nói gì?",
+        "questionNorm": "dieu 2 cua luat duong bo noi gi",
+        "intent": "ASK_ARTICLE_CONTENT",
+        "entities": {
+          "question_norm": "dieu 2 cua luat duong bo noi gi",
+          "article": "2",
+          "law_code": "LDB",
+          "law_label": "Luật Đường bộ",
+          "entity_key": "duong bo",
+          "entity_label": "đường bộ",
+          "domain": "LDB",
+          "entity_hints": [
+            "DuongBo"
+          ]
+        },
+        "endpoint": "http://fuseki:3030/legalqa/query",
+        "sparql": "PREFIX legal: <http://example.org/legal-qa#>\nPREFIX rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>\nSELECT DISTINCT ?articleNumber ?articleLabel ?lawCode ?entityLabel ?rawS ?rawO ?clauseNumber ?pointNumber\nWHERE {\n    ?article rdf:type legal:Article ;\n             legal:articleNumber ?articleNumber .\n    FILTER(?articleNumber = \"2\")\n\n    OPTIONAL { ?article legal:label ?articleLabel . }\n    OPTIONAL { ?article legal:rawSubject ?rawS . }\n    OPTIONAL { ?article legal:rawObject ?rawO . }\n    OPTIONAL { ?article legal:clauseNumber ?clauseNumber . }\n    OPTIONAL { ?article legal:pointNumber ?pointNumber . }\n    OPTIONAL {\n        ?law legal:hasChapter/legal:hasArticle ?article ;\n             legal:lawCode ?lawCode .\n    }\n    OPTIONAL {\n        ?article legal:mentionsEntity ?entity .\n        ?entity legal:label ?entityLabel .\n    }\n    FILTER(?lawCode = \"LDB\")\n    \n    \n}\nORDER BY ?lawCode ?clauseNumber ?pointNumber ?entityLabel\nLIMIT 100\n",
+        "answer": "Trích dẫn điều luật: Luật Đường bộ, Điều 2.\nNội dung liên quan:\n- Công trình đường bộ → bãi đỗ xe\n- Cơ quan quản lý đường bộ → bãi đỗ xe\n- Hoạt động đường bộ → bãi đỗ xe\n- Hành lang an toàn đường bộ → bãi đỗ xe\n- Kết cấu hạ tầng đường bộ → bãi đỗ xe\nThực thể được nhắc tới: bãi đỗ xe",
+        "results": [
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Công trình đường bộ",
+            "rawO": "bãi đỗ xe"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Cơ quan quản lý đường bộ",
+            "rawO": "bãi đỗ xe"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Hoạt động đường bộ",
+            "rawO": "bãi đỗ xe"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Hành lang an toàn đường bộ",
+            "rawO": "bãi đỗ xe"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Kết cấu hạ tầng đường bộ",
+            "rawO": "bãi đỗ xe"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Người quản lý, sử dụng đường bộ",
+            "rawO": "bãi đỗ xe"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Đường bộ",
+            "rawO": "bãi đỗ xe"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Công trình đường bộ",
+            "rawO": "bến phà đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Cơ quan quản lý đường bộ",
+            "rawO": "bến phà đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Hoạt động đường bộ",
+            "rawO": "bến phà đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Hành lang an toàn đường bộ",
+            "rawO": "bến phà đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Kết cấu hạ tầng đường bộ",
+            "rawO": "bến phà đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Người quản lý, sử dụng đường bộ",
+            "rawO": "bến phà đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Đường bộ",
+            "rawO": "bến phà đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Công trình đường bộ",
+            "rawO": "bến xe"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Cơ quan quản lý đường bộ",
+            "rawO": "bến xe"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Hoạt động đường bộ",
+            "rawO": "bến xe"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Hành lang an toàn đường bộ",
+            "rawO": "bến xe"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Kết cấu hạ tầng đường bộ",
+            "rawO": "bến xe"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Người quản lý, sử dụng đường bộ",
+            "rawO": "bến xe"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Đường bộ",
+            "rawO": "bến xe"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Công trình đường bộ",
+            "rawO": "chủ sở hữu trực tiếp quản lý, sử dụng, vận hành, khai thác công trình đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Cơ quan quản lý đường bộ",
+            "rawO": "chủ sở hữu trực tiếp quản lý, sử dụng, vận hành, khai thác công trình đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Hoạt động đường bộ",
+            "rawO": "chủ sở hữu trực tiếp quản lý, sử dụng, vận hành, khai thác công trình đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Hành lang an toàn đường bộ",
+            "rawO": "chủ sở hữu trực tiếp quản lý, sử dụng, vận hành, khai thác công trình đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Kết cấu hạ tầng đường bộ",
+            "rawO": "chủ sở hữu trực tiếp quản lý, sử dụng, vận hành, khai thác công trình đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Người quản lý, sử dụng đường bộ",
+            "rawO": "chủ sở hữu trực tiếp quản lý, sử dụng, vận hành, khai thác công trình đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Đường bộ",
+            "rawO": "chủ sở hữu trực tiếp quản lý, sử dụng, vận hành, khai thác công trình đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Công trình đường bộ",
+            "rawO": "các công trình khác của đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Cơ quan quản lý đường bộ",
+            "rawO": "các công trình khác của đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Hoạt động đường bộ",
+            "rawO": "các công trình khác của đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Hành lang an toàn đường bộ",
+            "rawO": "các công trình khác của đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Kết cấu hạ tầng đường bộ",
+            "rawO": "các công trình khác của đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Người quản lý, sử dụng đường bộ",
+            "rawO": "các công trình khác của đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Đường bộ",
+            "rawO": "các công trình khác của đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Công trình đường bộ",
+            "rawO": "các công trình phụ trợ gắn liền với đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Cơ quan quản lý đường bộ",
+            "rawO": "các công trình phụ trợ gắn liền với đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Hoạt động đường bộ",
+            "rawO": "các công trình phụ trợ gắn liền với đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Hành lang an toàn đường bộ",
+            "rawO": "các công trình phụ trợ gắn liền với đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Kết cấu hạ tầng đường bộ",
+            "rawO": "các công trình phụ trợ gắn liền với đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Người quản lý, sử dụng đường bộ",
+            "rawO": "các công trình phụ trợ gắn liền với đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Đường bộ",
+            "rawO": "các công trình phụ trợ gắn liền với đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Công trình đường bộ",
+            "rawO": "các công trình phụ trợ phục vụ cho hoạt động đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Cơ quan quản lý đường bộ",
+            "rawO": "các công trình phụ trợ phục vụ cho hoạt động đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Hoạt động đường bộ",
+            "rawO": "các công trình phụ trợ phục vụ cho hoạt động đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Hành lang an toàn đường bộ",
+            "rawO": "các công trình phụ trợ phục vụ cho hoạt động đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Kết cấu hạ tầng đường bộ",
+            "rawO": "các công trình phụ trợ phục vụ cho hoạt động đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Người quản lý, sử dụng đường bộ",
+            "rawO": "các công trình phụ trợ phục vụ cho hoạt động đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Đường bộ",
+            "rawO": "các công trình phụ trợ phục vụ cho hoạt động đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Công trình đường bộ",
+            "rawO": "công trình kiểm soát tải trọng xe"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Cơ quan quản lý đường bộ",
+            "rawO": "công trình kiểm soát tải trọng xe"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Hoạt động đường bộ",
+            "rawO": "công trình kiểm soát tải trọng xe"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Hành lang an toàn đường bộ",
+            "rawO": "công trình kiểm soát tải trọng xe"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Kết cấu hạ tầng đường bộ",
+            "rawO": "công trình kiểm soát tải trọng xe"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Người quản lý, sử dụng đường bộ",
+            "rawO": "công trình kiểm soát tải trọng xe"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Đường bộ",
+            "rawO": "công trình kiểm soát tải trọng xe"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Công trình đường bộ",
+            "rawO": "công trình phục vụ công tác quản lý, vận hành, khai thác đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Cơ quan quản lý đường bộ",
+            "rawO": "công trình phục vụ công tác quản lý, vận hành, khai thác đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Hoạt động đường bộ",
+            "rawO": "công trình phục vụ công tác quản lý, vận hành, khai thác đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Hành lang an toàn đường bộ",
+            "rawO": "công trình phục vụ công tác quản lý, vận hành, khai thác đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Kết cấu hạ tầng đường bộ",
+            "rawO": "công trình phục vụ công tác quản lý, vận hành, khai thác đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Người quản lý, sử dụng đường bộ",
+            "rawO": "công trình phục vụ công tác quản lý, vận hành, khai thác đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Đường bộ",
+            "rawO": "công trình phục vụ công tác quản lý, vận hành, khai thác đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Công trình đường bộ",
+            "rawO": "công trình thuộc hệ thống quản lý giao thông thông minh"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Cơ quan quản lý đường bộ",
+            "rawO": "công trình thuộc hệ thống quản lý giao thông thông minh"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Hoạt động đường bộ",
+            "rawO": "công trình thuộc hệ thống quản lý giao thông thông minh"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Hành lang an toàn đường bộ",
+            "rawO": "công trình thuộc hệ thống quản lý giao thông thông minh"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Kết cấu hạ tầng đường bộ",
+            "rawO": "công trình thuộc hệ thống quản lý giao thông thông minh"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Người quản lý, sử dụng đường bộ",
+            "rawO": "công trình thuộc hệ thống quản lý giao thông thông minh"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Đường bộ",
+            "rawO": "công trình thuộc hệ thống quản lý giao thông thông minh"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Công trình đường bộ",
+            "rawO": "công trình đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Cơ quan quản lý đường bộ",
+            "rawO": "công trình đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Hoạt động đường bộ",
+            "rawO": "công trình đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Hành lang an toàn đường bộ",
+            "rawO": "công trình đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Kết cấu hạ tầng đường bộ",
+            "rawO": "công trình đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Người quản lý, sử dụng đường bộ",
+            "rawO": "công trình đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Đường bộ",
+            "rawO": "công trình đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Công trình đường bộ",
+            "rawO": "cơ quan chuyên môn thuộc Ủy ban nhân dân cấp huyện"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Cơ quan quản lý đường bộ",
+            "rawO": "cơ quan chuyên môn thuộc Ủy ban nhân dân cấp huyện"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Hoạt động đường bộ",
+            "rawO": "cơ quan chuyên môn thuộc Ủy ban nhân dân cấp huyện"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Hành lang an toàn đường bộ",
+            "rawO": "cơ quan chuyên môn thuộc Ủy ban nhân dân cấp huyện"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Kết cấu hạ tầng đường bộ",
+            "rawO": "cơ quan chuyên môn thuộc Ủy ban nhân dân cấp huyện"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Người quản lý, sử dụng đường bộ",
+            "rawO": "cơ quan chuyên môn thuộc Ủy ban nhân dân cấp huyện"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Đường bộ",
+            "rawO": "cơ quan chuyên môn thuộc Ủy ban nhân dân cấp huyện"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Công trình đường bộ",
+            "rawO": "cơ quan chuyên môn thuộc Ủy ban nhân dân cấp tỉnh"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Cơ quan quản lý đường bộ",
+            "rawO": "cơ quan chuyên môn thuộc Ủy ban nhân dân cấp tỉnh"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Hoạt động đường bộ",
+            "rawO": "cơ quan chuyên môn thuộc Ủy ban nhân dân cấp tỉnh"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Hành lang an toàn đường bộ",
+            "rawO": "cơ quan chuyên môn thuộc Ủy ban nhân dân cấp tỉnh"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Kết cấu hạ tầng đường bộ",
+            "rawO": "cơ quan chuyên môn thuộc Ủy ban nhân dân cấp tỉnh"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Người quản lý, sử dụng đường bộ",
+            "rawO": "cơ quan chuyên môn thuộc Ủy ban nhân dân cấp tỉnh"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Đường bộ",
+            "rawO": "cơ quan chuyên môn thuộc Ủy ban nhân dân cấp tỉnh"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Công trình đường bộ",
+            "rawO": "cơ quan thuộc Bộ Giao thông vận tải giúp Bộ trưởng Bộ Giao thông vận tải thực hiện chức năng quản lý nhà nước về hoạt động đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Cơ quan quản lý đường bộ",
+            "rawO": "cơ quan thuộc Bộ Giao thông vận tải giúp Bộ trưởng Bộ Giao thông vận tải thực hiện chức năng quản lý nhà nước về hoạt động đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Hoạt động đường bộ",
+            "rawO": "cơ quan thuộc Bộ Giao thông vận tải giúp Bộ trưởng Bộ Giao thông vận tải thực hiện chức năng quản lý nhà nước về hoạt động đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Hành lang an toàn đường bộ",
+            "rawO": "cơ quan thuộc Bộ Giao thông vận tải giúp Bộ trưởng Bộ Giao thông vận tải thực hiện chức năng quản lý nhà nước về hoạt động đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Kết cấu hạ tầng đường bộ",
+            "rawO": "cơ quan thuộc Bộ Giao thông vận tải giúp Bộ trưởng Bộ Giao thông vận tải thực hiện chức năng quản lý nhà nước về hoạt động đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Người quản lý, sử dụng đường bộ",
+            "rawO": "cơ quan thuộc Bộ Giao thông vận tải giúp Bộ trưởng Bộ Giao thông vận tải thực hiện chức năng quản lý nhà nước về hoạt động đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Đường bộ",
+            "rawO": "cơ quan thuộc Bộ Giao thông vận tải giúp Bộ trưởng Bộ Giao thông vận tải thực hiện chức năng quản lý nhà nước về hoạt động đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Công trình đường bộ",
+            "rawO": "cầu phao đường bộ"
+          },
+          {
+            "articleNumber": "2",
+            "lawCode": "LDB",
+            "entityLabel": "bãi đỗ xe",
+            "rawS": "Cơ quan quản lý đường bộ",
+            "rawO": "cầu phao đường bộ"
+          }
+        ],
+        "error": null
+      },
+      "request_error": null
+    },
+    {
+      "id": "unknown_1",
+      "question": "Hôm nay trời đẹp không?",
+      "checks": {
+        "request_ok": true,
+        "intent_match": true,
+        "success_match": true,
+        "message_match": true,
+        "legal_correctness": true,
+        "completeness": true,
+        "no_hallucination": true
+      },
+      "strict_pass": true,
+      "details": {
+        "pred_intent": "UNKNOWN",
+        "pred_success": false,
+        "pred_message": "UNKNOWN_INTENT",
+        "legal_correctness_auto": true,
+        "completeness_auto": true,
+        "answer_length": 151,
+        "hallucination_auto": false
+      },
+      "prediction": {
+        "intent": "UNKNOWN",
+        "success": false,
+        "message": "UNKNOWN_INTENT",
+        "endpoint": null,
+        "answer": "Hệ thống chưa nhận diện được loại câu hỏi này. Em hãy thử hỏi rõ hơn, ví dụ: 'Điều 2 của Luật Đường bộ nói gì?' hoặc 'Giấy phép lái xe thuộc điều nào?'",
+        "result_count": 0
+      },
+      "raw_response": {
+        "success": false,
+        "message": "UNKNOWN_INTENT",
+        "question": "Hôm nay trời đẹp không?",
+        "questionNorm": "hom nay troi dep khong",
+        "intent": "UNKNOWN",
+        "entities": {
+          "question_norm": "hom nay troi dep khong"
+        },
+        "endpoint": null,
+        "sparql": null,
+        "answer": "Hệ thống chưa nhận diện được loại câu hỏi này. Em hãy thử hỏi rõ hơn, ví dụ: 'Điều 2 của Luật Đường bộ nói gì?' hoặc 'Giấy phép lái xe thuộc điều nào?'",
+        "results": [],
+        "error": null
+      },
+      "request_error": null
+    },
+    {
+      "id": "inference_1",
+      "question": "Người lái xe có vi phạm không?",
+      "checks": {
+        "request_ok": true,
+        "intent_match": true,
+        "endpoint_match": true,
+        "legal_correctness": true,
+        "completeness": true,
+        "no_hallucination": true
+      },
+      "strict_pass": true,
+      "details": {
+        "pred_intent": "ASK_VIOLATION_CHECK",
+        "pred_endpoint": "http://fuseki:3030/legalqa-inf/sparql",
+        "legal_correctness_auto": true,
+        "completeness_auto": true,
+        "answer_length": 77,
+        "hallucination_auto": false
+      },
+      "prediction": {
+        "intent": "ASK_VIOLATION_CHECK",
+        "success": false,
+        "message": "UNSUPPORTED_QUERY",
+        "endpoint": "http://fuseki:3030/legalqa-inf/sparql",
+        "answer": "Chưa tìm thấy bằng chứng trong ontology suy luận rằng đây là hành vi vi phạm.",
+        "result_count": 0
+      },
+      "raw_response": {
+        "success": false,
+        "message": "UNSUPPORTED_QUERY",
+        "question": "Người lái xe có vi phạm không?",
+        "questionNorm": "nguoi lai xe co vi pham khong",
+        "intent": "ASK_VIOLATION_CHECK",
+        "entities": {
+          "question_norm": "nguoi lai xe co vi pham khong"
+        },
+        "endpoint": "http://fuseki:3030/legalqa-inf/sparql",
+        "sparql": "",
+        "answer": "Chưa tìm thấy bằng chứng trong ontology suy luận rằng đây là hành vi vi phạm.",
+        "results": [],
+        "error": null
+      },
+      "request_error": null
+    },
+    {
+      "id": "retrieval_precision_1",
+      "question": "Luật Đường bộ định nghĩa gì về xe cơ giới?",
+      "checks": {
+        "request_ok": true,
+        "f1_match": false,
+        "legal_correctness": false,
+        "completeness": true,
+        "no_hallucination": true
+      },
+      "strict_pass": false,
+      "details": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "legal_correctness": true,
+        "completeness": true,
+        "answer_length": 1294,
+        "has_hallucination": false
+      },
+      "prediction": {
+        "intent": "ASK_DEFINITION",
+        "success": true,
+        "message": "OK",
+        "endpoint": "http://fuseki:3030/legalqa/query",
+        "answer": "quỹ giảm thiểu thiệt hại tai nạn giao thông đường bộ: quỹ tài chính nhà nước ngoài ngân sách\ntai nạn giao thông đường bộ: va chạm liên quan đến người, phương tiện khi tham gia giao thông đường bộ, xảy ra ngoài ý muốn của người tham gia giao thông đường bộ, gây thiệt hại đến tính mạng, sức khỏe, tài sản của cá nhân hoặc tài sản của cơ quan, tổ chức\nđiều khiển giao thông đường bộ: hoạt động trực tiếp hướng dẫn giao thông đường bộ bảo đảm trật tự, an toàn, thông suốt\nchỉ huy giao thông đường bộ: tổng hợp các hoạt động thu thập, phân tích, đánh giá các yếu tố có liên quan để đưa ra các giải pháp điều hành hoạt động giao thông đường bộ trật tự, an toàn, thông suốt\nthiết bị thông minh hỗ trợ chỉ huy, điều khiển giao thông đường bộ: thiết bị kỹ thuật công nghệ có khả năng phát hiện, phân tích, đánh giá các tình huống giao thông đường bộ, vi phạm pháp luật trên đường bộ; do lực lượng chức năng sử dụng để hỗ trợ chỉ huy, điều khiển giao thông đường bộ, giải quyết tình huống và xử lý vi phạm pháp luật trên đường bộ\nCăn cứ pháp lý: Luật Trật tự, an toàn giao thông đường bộ, Điều 85; Luật Trật tự, an toàn giao thông đường bộ, Điều 76; Luật Trật tự, an toàn giao thông đường bộ, Điều 7; Luật Trật tự, an toàn giao thông đường bộ, Điều 2; Luật Trật tự, an toàn giao thông đường bộ, Điều 74.",
+        "result_count": 73
+      },
+      "raw_response": {
+        "success": true,
+        "message": "OK",
+        "question": "Luật Đường bộ định nghĩa gì về xe cơ giới?",
+        "questionNorm": "luat duong bo dinh nghia gi ve xe co gioi",
+        "intent": "ASK_DEFINITION",
+        "entities": {
+          "question_norm": "luat duong bo dinh nghia gi ve xe co gioi",
+          "law_code": "LDB",
+          "law_label": "Luật Đường bộ",
+          "entity_key": "duong bo",
+          "entity_label": "đường bộ",
+          "domain": "LDB",
+          "entity_hints": [
+            "DuongBo"
+          ]
+        },
+        "endpoint": "http://fuseki:3030/legalqa/query",
+        "sparql": "PREFIX legal: <http://example.org/legal-qa#>\nPREFIX rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>\nSELECT DISTINCT ?entity ?entityLabel ?subjectLabel ?relationName ?objectLabel ?lawCode ?articleNumber\nWHERE {\n    ?entity legal:label ?entityLabel .\n    FILTER(STRENDS(STR(?entity), \"#DuongBo\") || LCASE(STR(?entityLabel)) = LCASE(\"đường bộ\") || STRSTARTS(LCASE(STR(?entityLabel)), LCASE(\"đường bộ\")) || CONTAINS(LCASE(STR(?entityLabel)), LCASE(\"đường bộ\")))\n\n    ?subject ?rel ?object .\n    ?subject legal:label ?subjectLabel .\n    ?object legal:label ?objectLabel .\n    FILTER(?subject = ?entity)\n    FILTER(STRENDS(STR(?rel), \"#dinhNghia\"))\n\n    BIND(REPLACE(STR(?rel), \".*#\", \"\") AS ?relationName)\n\n    OPTIONAL {\n        ?article rdf:type legal:Article ;\n                 legal:mentionsEntity ?subject ;\n                 legal:articleNumber ?articleNumber .\n        ?law legal:hasChapter/legal:hasArticle ?article ; legal:lawCode ?lawCode .\n    }\n}\nLIMIT 100\n",
+        "answer": "quỹ giảm thiểu thiệt hại tai nạn giao thông đường bộ: quỹ tài chính nhà nước ngoài ngân sách\ntai nạn giao thông đường bộ: va chạm liên quan đến người, phương tiện khi tham gia giao thông đường bộ, xảy ra ngoài ý muốn của người tham gia giao thông đường bộ, gây thiệt hại đến tính mạng, sức khỏe, tài sản của cá nhân hoặc tài sản của cơ quan, tổ chức\nđiều khiển giao thông đường bộ: hoạt động trực tiếp hướng dẫn giao thông đường bộ bảo đảm trật tự, an toàn, thông suốt\nchỉ huy giao thông đường bộ: tổng hợp các hoạt động thu thập, phân tích, đánh giá các yếu tố có liên quan để đưa ra các giải pháp điều hành hoạt động giao thông đường bộ trật tự, an toàn, thông suốt\nthiết bị thông minh hỗ trợ chỉ huy, điều khiển giao thông đường bộ: thiết bị kỹ thuật công nghệ có khả năng phát hiện, phân tích, đánh giá các tình huống giao thông đường bộ, vi phạm pháp luật trên đường bộ; do lực lượng chức năng sử dụng để hỗ trợ chỉ huy, điều khiển giao thông đường bộ, giải quyết tình huống và xử lý vi phạm pháp luật trên đường bộ\nCăn cứ pháp lý: Luật Trật tự, an toàn giao thông đường bộ, Điều 85; Luật Trật tự, an toàn giao thông đường bộ, Điều 76; Luật Trật tự, an toàn giao thông đường bộ, Điều 7; Luật Trật tự, an toàn giao thông đường bộ, Điều 2; Luật Trật tự, an toàn giao thông đường bộ, Điều 74.",
+        "results": [
+          {
+            "entity": "http://example.org/legal-qa#QuyGiamThieuThietHaiTaiNanGiaoThongDuongBo",
+            "entityLabel": "quỹ giảm thiểu thiệt hại tai nạn giao thông đường bộ",
+            "subjectLabel": "quỹ giảm thiểu thiệt hại tai nạn giao thông đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "quỹ tài chính nhà nước ngoài ngân sách",
+            "lawCode": "TTATGTDB",
+            "articleNumber": "85"
+          },
+          {
+            "entity": "http://example.org/legal-qa#TaiNanGiaoThongDuongBo",
+            "entityLabel": "tai nạn giao thông đường bộ",
+            "subjectLabel": "tai nạn giao thông đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "va chạm liên quan đến người, phương tiện khi tham gia giao thông đường bộ, xảy ra ngoài ý muốn của người tham gia giao thông đường bộ, gây thiệt hại đến tính mạng, sức khỏe, tài sản của cá nhân hoặc tài sản của cơ quan, tổ chức",
+            "lawCode": "TTATGTDB",
+            "articleNumber": "76"
+          },
+          {
+            "entity": "http://example.org/legal-qa#TaiNanGiaoThongDuongBo",
+            "entityLabel": "tai nạn giao thông đường bộ",
+            "subjectLabel": "tai nạn giao thông đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "va chạm liên quan đến người, phương tiện khi tham gia giao thông đường bộ, xảy ra ngoài ý muốn của người tham gia giao thông đường bộ, gây thiệt hại đến tính mạng, sức khỏe, tài sản của cá nhân hoặc tài sản của cơ quan, tổ chức",
+            "lawCode": "TTATGTDB",
+            "articleNumber": "7"
+          },
+          {
+            "entity": "http://example.org/legal-qa#TaiNanGiaoThongDuongBo",
+            "entityLabel": "tai nạn giao thông đường bộ",
+            "subjectLabel": "tai nạn giao thông đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "va chạm liên quan đến người, phương tiện khi tham gia giao thông đường bộ, xảy ra ngoài ý muốn của người tham gia giao thông đường bộ, gây thiệt hại đến tính mạng, sức khỏe, tài sản của cá nhân hoặc tài sản của cơ quan, tổ chức",
+            "lawCode": "TTATGTDB",
+            "articleNumber": "2"
+          },
+          {
+            "entity": "http://example.org/legal-qa#DieuKhienGiaoThongDuongBo",
+            "entityLabel": "điều khiển giao thông đường bộ",
+            "subjectLabel": "điều khiển giao thông đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "hoạt động trực tiếp hướng dẫn giao thông đường bộ bảo đảm trật tự, an toàn, thông suốt",
+            "lawCode": "TTATGTDB",
+            "articleNumber": "74"
+          },
+          {
+            "entity": "http://example.org/legal-qa#ChiHuyGiaoThongDuongBo",
+            "entityLabel": "chỉ huy giao thông đường bộ",
+            "subjectLabel": "chỉ huy giao thông đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "tổng hợp các hoạt động thu thập, phân tích, đánh giá các yếu tố có liên quan để đưa ra các giải pháp điều hành hoạt động giao thông đường bộ trật tự, an toàn, thông suốt",
+            "lawCode": "TTATGTDB",
+            "articleNumber": "74"
+          },
+          {
+            "entity": "http://example.org/legal-qa#ThietBiThongMinhHoTroChiHuyDieuKhienGiaoThongDuongBo",
+            "entityLabel": "thiết bị thông minh hỗ trợ chỉ huy, điều khiển giao thông đường bộ",
+            "subjectLabel": "thiết bị thông minh hỗ trợ chỉ huy, điều khiển giao thông đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "thiết bị kỹ thuật công nghệ có khả năng phát hiện, phân tích, đánh giá các tình huống giao thông đường bộ, vi phạm pháp luật trên đường bộ; do lực lượng chức năng sử dụng để hỗ trợ chỉ huy, điều khiển giao thông đường bộ, giải quyết tình huống và xử lý vi phạm pháp luật trên đường bộ",
+            "lawCode": "TTATGTDB",
+            "articleNumber": "74"
+          },
+          {
+            "entity": "http://example.org/legal-qa#ThietBiThongMinhHoTroChiHuyDieuKhienGiaoThongDuongBo",
+            "entityLabel": "thiết bị thông minh hỗ trợ chỉ huy, điều khiển giao thông đường bộ",
+            "subjectLabel": "thiết bị thông minh hỗ trợ chỉ huy, điều khiển giao thông đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "thiết bị kỹ thuật công nghệ có khả năng phát hiện, phân tích, đánh giá các tình huống giao thông đường bộ, vi phạm pháp luật trên đường bộ; do lực lượng chức năng sử dụng để hỗ trợ chỉ huy, điều khiển giao thông đường bộ, giải quyết tình huống và xử lý vi phạm pháp luật trên đường bộ",
+            "lawCode": "TTATGTDB",
+            "articleNumber": "2"
+          },
+          {
+            "entity": "http://example.org/legal-qa#HeThongGiamSatBaoDamAnNinhTratTuAnToanGiaoThongDuongBo",
+            "entityLabel": "hệ thống giám sát bảo đảm an ninh, trật tự, an toàn giao thông đường bộ",
+            "subjectLabel": "hệ thống giám sát bảo đảm an ninh, trật tự, an toàn giao thông đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "hệ thống thu thập tín hiệu, dữ liệu, âm thanh, hình ảnh về hành trình của phương tiện tham gia giao thông đường bộ, tình trạng giao thông và các dữ liệu liên quan khác được xây dựng, lắp đặt trên các tuyến giao thông đường bộ theo quy chuẩn kỹ thuật quốc gia",
+            "lawCode": "TTATGTDB",
+            "articleNumber": "71"
+          },
+          {
+            "entity": "http://example.org/legal-qa#ChungChiBoiDuongKienThucPhapLuatVeGiaoThongDuongBo",
+            "entityLabel": "chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ",
+            "subjectLabel": "chứng chỉ bồi dưỡng kiến thức pháp luật về giao thông đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "giấy chứng nhận cấp cho người có đủ điều kiện theo quy định của pháp luật để điều khiển xe máy chuyên dùng tham gia giao thông đường bộ",
+            "lawCode": "TTATGTDB",
+            "articleNumber": "63"
+          },
+          {
+            "entity": "http://example.org/legal-qa#XeCuuHoGiaoThongDuongBo",
+            "entityLabel": "xe cứu hộ giao thông đường bộ",
+            "subjectLabel": "xe cứu hộ giao thông đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "xe ô tô chuyên dùng có trang bị dụng cụ, thiết bị dùng để cứu hộ, hỗ trợ di chuyển hoặc chuyên chở các phương tiện giao thông đường bộ bị hư hỏng, bị sự cố",
+            "lawCode": "TTATGTDB",
+            "articleNumber": "54"
+          },
+          {
+            "entity": "http://example.org/legal-qa#TratTuAnToanGiaoThongDuongBo",
+            "entityLabel": "trật tự, an toàn giao thông đường bộ",
+            "subjectLabel": "trật tự, an toàn giao thông đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "trạng thái giao thông trên đường bộ có trật tự, bảo đảm an toàn, thông suốt; được hình thành và điều chỉnh bởi các quy tắc, nguyên tắc, quy phạm pháp luật trong lĩnh vực giao thông đường bộ",
+            "lawCode": "TTATGTDB",
+            "articleNumber": "51"
+          },
+          {
+            "entity": "http://example.org/legal-qa#TratTuAnToanGiaoThongDuongBo",
+            "entityLabel": "trật tự, an toàn giao thông đường bộ",
+            "subjectLabel": "trật tự, an toàn giao thông đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "trạng thái giao thông trên đường bộ có trật tự, bảo đảm an toàn, thông suốt; được hình thành và điều chỉnh bởi các quy tắc, nguyên tắc, quy phạm pháp luật trong lĩnh vực giao thông đường bộ",
+            "lawCode": "TTATGTDB",
+            "articleNumber": "9"
+          },
+          {
+            "entity": "http://example.org/legal-qa#TratTuAnToanGiaoThongDuongBo",
+            "entityLabel": "trật tự, an toàn giao thông đường bộ",
+            "subjectLabel": "trật tự, an toàn giao thông đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "trạng thái giao thông trên đường bộ có trật tự, bảo đảm an toàn, thông suốt; được hình thành và điều chỉnh bởi các quy tắc, nguyên tắc, quy phạm pháp luật trong lĩnh vực giao thông đường bộ",
+            "lawCode": "TTATGTDB",
+            "articleNumber": "8"
+          },
+          {
+            "entity": "http://example.org/legal-qa#TratTuAnToanGiaoThongDuongBo",
+            "entityLabel": "trật tự, an toàn giao thông đường bộ",
+            "subjectLabel": "trật tự, an toàn giao thông đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "trạng thái giao thông trên đường bộ có trật tự, bảo đảm an toàn, thông suốt; được hình thành và điều chỉnh bởi các quy tắc, nguyên tắc, quy phạm pháp luật trong lĩnh vực giao thông đường bộ",
+            "lawCode": "TTATGTDB",
+            "articleNumber": "4"
+          },
+          {
+            "entity": "http://example.org/legal-qa#TratTuAnToanGiaoThongDuongBo",
+            "entityLabel": "trật tự, an toàn giao thông đường bộ",
+            "subjectLabel": "trật tự, an toàn giao thông đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "trạng thái giao thông trên đường bộ có trật tự, bảo đảm an toàn, thông suốt; được hình thành và điều chỉnh bởi các quy tắc, nguyên tắc, quy phạm pháp luật trong lĩnh vực giao thông đường bộ",
+            "lawCode": "TTATGTDB",
+            "articleNumber": "2"
+          },
+          {
+            "entity": "http://example.org/legal-qa#TratTuAnToanGiaoThongDuongBo",
+            "entityLabel": "trật tự, an toàn giao thông đường bộ",
+            "subjectLabel": "trật tự, an toàn giao thông đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "trạng thái giao thông trên đường bộ có trật tự, bảo đảm an toàn, thông suốt; được hình thành và điều chỉnh bởi các quy tắc, nguyên tắc, quy phạm pháp luật trong lĩnh vực giao thông đường bộ",
+            "lawCode": "LDB",
+            "articleNumber": "61"
+          },
+          {
+            "entity": "http://example.org/legal-qa#PhuongTienGiaoThongDuongBo",
+            "entityLabel": "phương tiện giao thông đường bộ",
+            "subjectLabel": "phương tiện giao thông đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "xe",
+            "lawCode": "TTATGTDB",
+            "articleNumber": "36"
+          },
+          {
+            "entity": "http://example.org/legal-qa#PhuongTienGiaoThongDuongBo",
+            "entityLabel": "phương tiện giao thông đường bộ",
+            "subjectLabel": "phương tiện giao thông đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "xe",
+            "lawCode": "TTATGTDB",
+            "articleNumber": "23"
+          },
+          {
+            "entity": "http://example.org/legal-qa#PhuongTienGiaoThongDuongBo",
+            "entityLabel": "phương tiện giao thông đường bộ",
+            "subjectLabel": "phương tiện giao thông đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "xe",
+            "lawCode": "TTATGTDB",
+            "articleNumber": "2"
+          },
+          {
+            "entity": "http://example.org/legal-qa#UnTacGiaoThongDuongBoSauDayGoiLaUnTacGiaoThong",
+            "entityLabel": "ùn tắc giao thông đường bộ (sau đây gọi là ùn tắc giao thông)",
+            "subjectLabel": "ùn tắc giao thông đường bộ (sau đây gọi là ùn tắc giao thông)",
+            "relationName": "dinhNghia",
+            "objectLabel": "tình trạng người, phương tiện tham gia giao thông đường bộ bị dồn ứ, di chuyển với tốc độ rất chậm hoặc không thể di chuyển được",
+            "lawCode": "TTATGTDB",
+            "articleNumber": "2"
+          },
+          {
+            "entity": "http://example.org/legal-qa#PhuongTienThamGiaGiaoThongDuongBo",
+            "entityLabel": "phương tiện tham gia giao thông đường bộ",
+            "subjectLabel": "phương tiện tham gia giao thông đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "phương tiện giao thông đường bộ tham gia giao thông trên đường bộ",
+            "lawCode": "TTATGTDB",
+            "articleNumber": "2"
+          },
+          {
+            "entity": "http://example.org/legal-qa#KinhDoanhVanTaiDuongBo",
+            "entityLabel": "kinh doanh vận tải đường bộ",
+            "subjectLabel": "kinh doanh vận tải đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "hoạt động do tổ chức, cá nhân (sau đây gọi là đơn vị kinh doanh vận tải) sử dụng xe thô sơ, xe cơ giới để cung cấp dịch vụ vận tải người, hàng hóa trên đường bộ nhằm mục đích sinh lợi",
+            "lawCode": "LDB",
+            "articleNumber": "56"
+          },
+          {
+            "entity": "http://example.org/legal-qa#HoatDongVanTaiDuongBoQuocTe",
+            "entityLabel": "hoạt động vận tải đường bộ quốc tế",
+            "subjectLabel": "hoạt động vận tải đường bộ quốc tế",
+            "relationName": "dinhNghia",
+            "objectLabel": "hoạt động do tổ chức, cá nhân sử dụng xe cơ giới để vận tải người, hàng hóa qua lại giữa việt nam với các nước",
+            "lawCode": "LDB",
+            "articleNumber": "56"
+          },
+          {
+            "entity": "http://example.org/legal-qa#HoatDongVanTaiDuongBoTrongNuoc",
+            "entityLabel": "hoạt động vận tải đường bộ trong nước",
+            "subjectLabel": "hoạt động vận tải đường bộ trong nước",
+            "relationName": "dinhNghia",
+            "objectLabel": "hoạt động do tổ chức, cá nhân sử dụng xe thô sơ, xe cơ giới để vận tải người, hàng hóa trên đường bộ trong phạm vi lãnh thổ việt nam",
+            "lawCode": "LDB",
+            "articleNumber": "56"
+          },
+          {
+            "entity": "http://example.org/legal-qa#HoatDongVanTaiDuongBo",
+            "entityLabel": "hoạt động vận tải đường bộ",
+            "subjectLabel": "hoạt động vận tải đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "việc tổ chức, cá nhân sử dụng xe thô sơ, xe cơ giới để vận tải người, hàng hóa trên đường bộ trong nước, quốc tế",
+            "lawCode": "LDB",
+            "articleNumber": "56"
+          },
+          {
+            "entity": "http://example.org/legal-qa#DuongBoCaoTocSauDayGoiLaDuongCaoToc",
+            "entityLabel": "đường bộ cao tốc (sau đây gọi là đường cao tốc)",
+            "subjectLabel": "đường bộ cao tốc (sau đây gọi là đường cao tốc)",
+            "relationName": "dinhNghia",
+            "objectLabel": "một cấp kỹ thuật của đường bộ",
+            "lawCode": "LDB",
+            "articleNumber": "44"
+          },
+          {
+            "entity": "http://example.org/legal-qa#QuyHoachKetCauHaTangDuongBo",
+            "entityLabel": "quy hoạch kết cấu hạ tầng đường bộ",
+            "subjectLabel": "quy hoạch kết cấu hạ tầng đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "quy hoạch có tính chất kỹ thuật, chuyên ngành, cụ thể hóa quy hoạch mạng lưới đường bộ, xác định phương án phát triển công trình đường bộ và kết cấu hạ tầng đường bộ khác theo từng tuyến đường bộ",
+            "lawCode": "LDB",
+            "articleNumber": "44"
+          },
+          {
+            "entity": "http://example.org/legal-qa#QuyHoachKetCauHaTangDuongBo",
+            "entityLabel": "quy hoạch kết cấu hạ tầng đường bộ",
+            "subjectLabel": "quy hoạch kết cấu hạ tầng đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "quy hoạch có tính chất kỹ thuật, chuyên ngành, cụ thể hóa quy hoạch mạng lưới đường bộ, xác định phương án phát triển công trình đường bộ và kết cấu hạ tầng đường bộ khác theo từng tuyến đường bộ",
+            "lawCode": "LDB",
+            "articleNumber": "6"
+          },
+          {
+            "entity": "http://example.org/legal-qa#QuyHoachKetCauHaTangDuongBo",
+            "entityLabel": "quy hoạch kết cấu hạ tầng đường bộ",
+            "subjectLabel": "quy hoạch kết cấu hạ tầng đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "quy hoạch có tính chất kỹ thuật, chuyên ngành, cụ thể hóa quy hoạch mạng lưới đường bộ, xác định phương án phát triển công trình đường bộ và kết cấu hạ tầng đường bộ khác theo từng tuyến đường bộ",
+            "lawCode": "LDB",
+            "articleNumber": "5"
+          },
+          {
+            "entity": "http://example.org/legal-qa#QuyHoachMangLuoiDuongBo",
+            "entityLabel": "quy hoạch mạng lưới đường bộ",
+            "subjectLabel": "quy hoạch mạng lưới đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "quy hoạch ngành quốc gia",
+            "lawCode": "LDB",
+            "articleNumber": "44"
+          },
+          {
+            "entity": "http://example.org/legal-qa#QuyHoachMangLuoiDuongBo",
+            "entityLabel": "quy hoạch mạng lưới đường bộ",
+            "subjectLabel": "quy hoạch mạng lưới đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "quy hoạch ngành quốc gia",
+            "lawCode": "LDB",
+            "articleNumber": "12"
+          },
+          {
+            "entity": "http://example.org/legal-qa#QuyHoachMangLuoiDuongBo",
+            "entityLabel": "quy hoạch mạng lưới đường bộ",
+            "subjectLabel": "quy hoạch mạng lưới đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "quy hoạch ngành quốc gia",
+            "lawCode": "LDB",
+            "articleNumber": "6"
+          },
+          {
+            "entity": "http://example.org/legal-qa#QuyHoachMangLuoiDuongBo",
+            "entityLabel": "quy hoạch mạng lưới đường bộ",
+            "subjectLabel": "quy hoạch mạng lưới đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "quy hoạch ngành quốc gia",
+            "lawCode": "LDB",
+            "articleNumber": "5"
+          },
+          {
+            "entity": "http://example.org/legal-qa#ThanhToanDienTuGiaoThongDuongBo",
+            "entityLabel": "thanh toán điện tử giao thông đường bộ",
+            "subjectLabel": "thanh toán điện tử giao thông đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "việc thanh toán các loại phí, giá, tiền dịch vụ liên quan đến hoạt động giao thông của phương tiện giao thông đường bộ thông qua tài khoản giao thông",
+            "lawCode": "LDB",
+            "articleNumber": "43"
+          },
+          {
+            "entity": "http://example.org/legal-qa#ThanhToanDienTuGiaoThongDuongBo",
+            "entityLabel": "thanh toán điện tử giao thông đường bộ",
+            "subjectLabel": "thanh toán điện tử giao thông đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "việc thanh toán các loại phí, giá, tiền dịch vụ liên quan đến hoạt động giao thông của phương tiện giao thông đường bộ thông qua tài khoản giao thông",
+            "lawCode": "LDB",
+            "articleNumber": "6"
+          },
+          {
+            "entity": "http://example.org/legal-qa#TramThuPhiDuongBo",
+            "entityLabel": "trạm thu phí đường bộ",
+            "subjectLabel": "trạm thu phí đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "nơi thu tiền sử dụng đường bộ đối với phương tiện tham gia giao thông đường bộ",
+            "lawCode": "LDB",
+            "articleNumber": "39"
+          },
+          {
+            "entity": "http://example.org/legal-qa#NguoiQuanLySuDungDuongBo",
+            "entityLabel": "người quản lý, sử dụng đường bộ",
+            "subjectLabel": "người quản lý, sử dụng đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "tổ chức, cá nhân được giao quản lý, sử dụng, vận hành, khai thác công trình đường bộ",
+            "lawCode": "LDB",
+            "articleNumber": "38"
+          },
+          {
+            "entity": "http://example.org/legal-qa#NguoiQuanLySuDungDuongBo",
+            "entityLabel": "người quản lý, sử dụng đường bộ",
+            "subjectLabel": "người quản lý, sử dụng đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "tổ chức, cá nhân được giao quản lý, sử dụng, vận hành, khai thác công trình đường bộ",
+            "lawCode": "LDB",
+            "articleNumber": "35"
+          },
+          {
+            "entity": "http://example.org/legal-qa#NguoiQuanLySuDungDuongBo",
+            "entityLabel": "người quản lý, sử dụng đường bộ",
+            "subjectLabel": "người quản lý, sử dụng đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "tổ chức, cá nhân được giao quản lý, sử dụng, vận hành, khai thác công trình đường bộ",
+            "lawCode": "LDB",
+            "articleNumber": "31"
+          },
+          {
+            "entity": "http://example.org/legal-qa#NguoiQuanLySuDungDuongBo",
+            "entityLabel": "người quản lý, sử dụng đường bộ",
+            "subjectLabel": "người quản lý, sử dụng đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "tổ chức, cá nhân được giao quản lý, sử dụng, vận hành, khai thác công trình đường bộ",
+            "lawCode": "LDB",
+            "articleNumber": "21"
+          },
+          {
+            "entity": "http://example.org/legal-qa#NguoiQuanLySuDungDuongBo",
+            "entityLabel": "người quản lý, sử dụng đường bộ",
+            "subjectLabel": "người quản lý, sử dụng đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "tổ chức, cá nhân được giao quản lý, sử dụng, vận hành, khai thác công trình đường bộ",
+            "lawCode": "LDB",
+            "articleNumber": "13"
+          },
+          {
+            "entity": "http://example.org/legal-qa#NguoiQuanLySuDungDuongBo",
+            "entityLabel": "người quản lý, sử dụng đường bộ",
+            "subjectLabel": "người quản lý, sử dụng đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "tổ chức, cá nhân được giao quản lý, sử dụng, vận hành, khai thác công trình đường bộ",
+            "lawCode": "LDB",
+            "articleNumber": "2"
+          },
+          {
+            "entity": "http://example.org/legal-qa#NguoiQuanLySuDungDuongBo",
+            "entityLabel": "người quản lý, sử dụng đường bộ",
+            "subjectLabel": "người quản lý, sử dụng đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "chủ sở hữu trực tiếp quản lý, sử dụng, vận hành, khai thác công trình đường bộ",
+            "lawCode": "LDB",
+            "articleNumber": "38"
+          },
+          {
+            "entity": "http://example.org/legal-qa#NguoiQuanLySuDungDuongBo",
+            "entityLabel": "người quản lý, sử dụng đường bộ",
+            "subjectLabel": "người quản lý, sử dụng đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "chủ sở hữu trực tiếp quản lý, sử dụng, vận hành, khai thác công trình đường bộ",
+            "lawCode": "LDB",
+            "articleNumber": "35"
+          },
+          {
+            "entity": "http://example.org/legal-qa#NguoiQuanLySuDungDuongBo",
+            "entityLabel": "người quản lý, sử dụng đường bộ",
+            "subjectLabel": "người quản lý, sử dụng đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "chủ sở hữu trực tiếp quản lý, sử dụng, vận hành, khai thác công trình đường bộ",
+            "lawCode": "LDB",
+            "articleNumber": "31"
+          },
+          {
+            "entity": "http://example.org/legal-qa#NguoiQuanLySuDungDuongBo",
+            "entityLabel": "người quản lý, sử dụng đường bộ",
+            "subjectLabel": "người quản lý, sử dụng đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "chủ sở hữu trực tiếp quản lý, sử dụng, vận hành, khai thác công trình đường bộ",
+            "lawCode": "LDB",
+            "articleNumber": "21"
+          },
+          {
+            "entity": "http://example.org/legal-qa#NguoiQuanLySuDungDuongBo",
+            "entityLabel": "người quản lý, sử dụng đường bộ",
+            "subjectLabel": "người quản lý, sử dụng đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "chủ sở hữu trực tiếp quản lý, sử dụng, vận hành, khai thác công trình đường bộ",
+            "lawCode": "LDB",
+            "articleNumber": "13"
+          },
+          {
+            "entity": "http://example.org/legal-qa#NguoiQuanLySuDungDuongBo",
+            "entityLabel": "người quản lý, sử dụng đường bộ",
+            "subjectLabel": "người quản lý, sử dụng đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "chủ sở hữu trực tiếp quản lý, sử dụng, vận hành, khai thác công trình đường bộ",
+            "lawCode": "LDB",
+            "articleNumber": "2"
+          },
+          {
+            "entity": "http://example.org/legal-qa#ThamTraAnToanGiaoThongDuongBo",
+            "entityLabel": "thẩm tra an toàn giao thông đường bộ",
+            "subjectLabel": "thẩm tra an toàn giao thông đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "việc tổ chức kinh doanh dịch vụ thẩm tra an toàn giao thông nghiên cứu, phân tích thiết kế cơ sở, thiết kế triển khai sau thiết kế cơ sở, báo cáo kinh tế - kỹ thuật xây dựng công trình, hồ sơ hoàn thành công trình, hồ sơ quản lý tuyến đường, nguyên nhân các vụ tai nạn giao thông và tiến hành kiểm tra hiện trường để phát hiện các khả năng tiềm ẩn tai nạn giao thông hoặc đánh giá nguyên nhân gây tai nạn giao thông để đề xuất giải pháp khắc phục nhằm bảo đảm giao thông trên tuyến thông suốt, an toàn",
+            "lawCode": "LDB",
+            "articleNumber": "29"
+          },
+          {
+            "entity": "http://example.org/legal-qa#DauTuXayDungCongTrinhThuocKetCauHaTangDuongBo",
+            "entityLabel": "đầu tư, xây dựng công trình thuộc kết cấu hạ tầng đường bộ",
+            "subjectLabel": "đầu tư, xây dựng công trình thuộc kết cấu hạ tầng đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "việc đầu tư, xây dựng mới, nâng cấp, mở rộng, cải tạo công trình đường bộ và các công trình khác thuộc kết cấu hạ tầng đường bộ",
+            "lawCode": "LDB",
+            "articleNumber": "28"
+          },
+          {
+            "entity": "http://example.org/legal-qa#KhoGioiHanCuaDuongBo",
+            "entityLabel": "khổ giới hạn của đường bộ",
+            "subjectLabel": "khổ giới hạn của đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "khoảng trống có kích thước giới hạn về chiều rộng, chiều cao của đường bộ để các xe, bao gồm cả hàng hóa xếp trên xe đi qua được an toàn và được xác định theo quy chuẩn, tiêu chuẩn kỹ thuật của đường bộ",
+            "lawCode": "LDB",
+            "articleNumber": "27"
+          },
+          {
+            "entity": "http://example.org/legal-qa#TaiTrongCuaDuongBo",
+            "entityLabel": "tải trọng của đường bộ",
+            "subjectLabel": "tải trọng của đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "khả năng chịu tải khai thác của đường bộ để bảo đảm khai thác an toàn và tuổi thọ công trình đường bộ",
+            "lawCode": "LDB",
+            "articleNumber": "27"
+          },
+          {
+            "entity": "http://example.org/legal-qa#KhoangCachGiuaCacXeTrenDuongBo",
+            "entityLabel": "khoảng cách giữa các xe trên đường bộ",
+            "subjectLabel": "khoảng cách giữa các xe trên đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "cự ly tối thiểu giữa các phương tiện tham gia giao thông đường bộ liền nhau trên cùng làn đường, phần đường",
+            "lawCode": "LDB",
+            "articleNumber": "26"
+          },
+          {
+            "entity": "http://example.org/legal-qa#TocDoKhaiThacTrenDuongBo",
+            "entityLabel": "tốc độ khai thác trên đường bộ",
+            "subjectLabel": "tốc độ khai thác trên đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "giá trị giới hạn tốc độ (tốc độ tối đa, tốc độ tối thiểu) cho phép phương tiện tham gia giao thông đường bộ bảo đảm an toàn giao thông và khai thác hiệu quả tuyến đường",
+            "lawCode": "LDB",
+            "articleNumber": "26"
+          },
+          {
+            "entity": "http://example.org/legal-qa#TocDoThietKeCuaDuongBo",
+            "entityLabel": "tốc độ thiết kế của đường bộ",
+            "subjectLabel": "tốc độ thiết kế của đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "giá trị vận tốc được dùng để tính toán các chỉ tiêu kỹ thuật của đường bộ",
+            "lawCode": "LDB",
+            "articleNumber": "26"
+          },
+          {
+            "entity": "http://example.org/legal-qa#CongTrinhHaTangKyThuatSuDungChungVoiDuongBo",
+            "entityLabel": "công trình hạ tầng kỹ thuật sử dụng chung với đường bộ",
+            "subjectLabel": "công trình hạ tầng kỹ thuật sử dụng chung với đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "công trình được xây dựng để bố trí, lắp đặt đường dây thông tin, viễn thông, đường dây tải điện, dây dẫn điện, chiếu sáng công cộng; đường ống cấp nước, thoát nước, cấp năng lượng",
+            "lawCode": "LDB",
+            "articleNumber": "20"
+          },
+          {
+            "entity": "http://example.org/legal-qa#PhamViBaoVeBenNgoaiCuaHamDuongBo",
+            "entityLabel": "phạm vi bảo vệ bên ngoài của hầm đường bộ",
+            "subjectLabel": "phạm vi bảo vệ bên ngoài của hầm đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "khoảng không đủ để bảo đảm an toàn cho vận hành, khai thác và sử dụng hầm đường bộ và các thiết bị của hầm đường bộ",
+            "lawCode": "LDB",
+            "articleNumber": "17"
+          },
+          {
+            "entity": "http://example.org/legal-qa#PhamViBaoVeTrenKhongCuaCauDuongBoTinhTuDiemCaoNhatCuaKetCauTrenCacMatCatNgangCauTroLenTheoPhuongThangDung",
+            "entityLabel": "phạm vi bảo vệ trên không của cầu đường bộ tính từ điểm cao nhất của kết cấu trên các mặt cắt ngang cầu trở lên theo phương thẳng đứng",
+            "subjectLabel": "phạm vi bảo vệ trên không của cầu đường bộ tính từ điểm cao nhất của kết cấu trên các mặt cắt ngang cầu trở lên theo phương thẳng đứng",
+            "relationName": "dinhNghia",
+            "objectLabel": "02 mét",
+            "lawCode": "LDB",
+            "articleNumber": "17"
+          },
+          {
+            "entity": "http://example.org/legal-qa#HanhLangAnToanDuongBo",
+            "entityLabel": "hành lang an toàn đường bộ",
+            "subjectLabel": "hành lang an toàn đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "dải đất dọc hai bên đất của đường bộ, tính từ mép ngoài phần đất để bảo vệ, bảo trì đường bộ ra hai bên để bảo đảm an toàn giao thông đường bộ, bảo đảm tầm nhìn xe chạy và hạn chế ảnh hưởng đến môi trường xung quanh",
+            "lawCode": "LDB",
+            "articleNumber": "15"
+          },
+          {
+            "entity": "http://example.org/legal-qa#HanhLangAnToanDuongBo",
+            "entityLabel": "hành lang an toàn đường bộ",
+            "subjectLabel": "hành lang an toàn đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "dải đất dọc hai bên đất của đường bộ, tính từ mép ngoài phần đất để bảo vệ, bảo trì đường bộ ra hai bên để bảo đảm an toàn giao thông đường bộ, bảo đảm tầm nhìn xe chạy và hạn chế ảnh hưởng đến môi trường xung quanh",
+            "lawCode": "LDB",
+            "articleNumber": "2"
+          },
+          {
+            "entity": "http://example.org/legal-qa#RanhGioiDatDeBaoVeBaoTriDuongBo",
+            "entityLabel": "ranh giới đất để bảo vệ, bảo trì đường bộ",
+            "subjectLabel": "ranh giới đất để bảo vệ, bảo trì đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "chân móng của đường, các hạng mục thuộc công trình đường bộ",
+            "lawCode": "LDB",
+            "articleNumber": "14"
+          },
+          {
+            "entity": "http://example.org/legal-qa#PhanDatDeBaoVeBaoTriDuongBo",
+            "entityLabel": "phần đất để bảo vệ, bảo trì đường bộ",
+            "subjectLabel": "phần đất để bảo vệ, bảo trì đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "nằm dọc phía ngoài lề đường và cách lề đường một khoảng đủ để xây dựng rãnh thoát nước, nhưng không nhỏ hơn 01 mét",
+            "lawCode": "LDB",
+            "articleNumber": "14"
+          },
+          {
+            "entity": "http://example.org/legal-qa#PhanDatDeBaoVeBaoTriDuongBo",
+            "entityLabel": "phần đất để bảo vệ, bảo trì đường bộ",
+            "subjectLabel": "phần đất để bảo vệ, bảo trì đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "nằm dọc phía ngoài lề đường và cách lề đường một khoảng đủ để xây dựng rãnh thoát nước, nhưng không nhỏ hơn 01 mét",
+            "lawCode": "LDB",
+            "articleNumber": "13"
+          },
+          {
+            "entity": "http://example.org/legal-qa#PhanDatDeBaoVeBaoTriDuongBo",
+            "entityLabel": "phần đất để bảo vệ, bảo trì đường bộ",
+            "subjectLabel": "phần đất để bảo vệ, bảo trì đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "từ mép ngoài bộ phận kết cấu ngoài cùng của công trình trở ra",
+            "lawCode": "LDB",
+            "articleNumber": "14"
+          },
+          {
+            "entity": "http://example.org/legal-qa#PhanDatDeBaoVeBaoTriDuongBo",
+            "entityLabel": "phần đất để bảo vệ, bảo trì đường bộ",
+            "subjectLabel": "phần đất để bảo vệ, bảo trì đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "từ mép ngoài bộ phận kết cấu ngoài cùng của công trình trở ra",
+            "lawCode": "LDB",
+            "articleNumber": "13"
+          },
+          {
+            "entity": "http://example.org/legal-qa#QuyDatDanhChoKetCauHaTangDuongBoTrongDoThi",
+            "entityLabel": "quỹ đất dành cho kết cấu hạ tầng đường bộ trong đô thị",
+            "subjectLabel": "quỹ đất dành cho kết cấu hạ tầng đường bộ trong đô thị",
+            "relationName": "dinhNghia",
+            "objectLabel": "một bộ phận của đất dành cho giao thông so với đất xây dựng đô thị",
+            "lawCode": "LDB",
+            "articleNumber": "12"
+          },
+          {
+            "entity": "http://example.org/legal-qa#PhamViBaoVeKetCauHaTangDuongBo",
+            "entityLabel": "phạm vi bảo vệ kết cấu hạ tầng đường bộ",
+            "subjectLabel": "phạm vi bảo vệ kết cấu hạ tầng đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "giới hạn trên mặt đất, trên mặt nước, trên không và phần dưới mặt đất, dưới mặt nước của kết cấu hạ tầng đường bộ",
+            "lawCode": "LDB",
+            "articleNumber": "21"
+          },
+          {
+            "entity": "http://example.org/legal-qa#PhamViBaoVeKetCauHaTangDuongBo",
+            "entityLabel": "phạm vi bảo vệ kết cấu hạ tầng đường bộ",
+            "subjectLabel": "phạm vi bảo vệ kết cấu hạ tầng đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "giới hạn trên mặt đất, trên mặt nước, trên không và phần dưới mặt đất, dưới mặt nước của kết cấu hạ tầng đường bộ",
+            "lawCode": "LDB",
+            "articleNumber": "7"
+          },
+          {
+            "entity": "http://example.org/legal-qa#CoSoDuLieuVeTratTuAnToanGiaoThongDuongBo",
+            "entityLabel": "cơ sở dữ liệu về trật tự, an toàn giao thông đường bộ",
+            "subjectLabel": "cơ sở dữ liệu về trật tự, an toàn giao thông đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "cơ sở dữ liệu dùng chung",
+            "lawCode": "TTATGTDB",
+            "articleNumber": "7"
+          },
+          {
+            "entity": "http://example.org/legal-qa#CoSoDuLieuVeTratTuAnToanGiaoThongDuongBo",
+            "entityLabel": "cơ sở dữ liệu về trật tự, an toàn giao thông đường bộ",
+            "subjectLabel": "cơ sở dữ liệu về trật tự, an toàn giao thông đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "cơ sở dữ liệu dùng chung",
+            "lawCode": "TTATGTDB",
+            "articleNumber": "4"
+          },
+          {
+            "entity": "http://example.org/legal-qa#CoSoDuLieuVeTratTuAnToanGiaoThongDuongBo",
+            "entityLabel": "cơ sở dữ liệu về trật tự, an toàn giao thông đường bộ",
+            "subjectLabel": "cơ sở dữ liệu về trật tự, an toàn giao thông đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "cơ sở dữ liệu dùng chung",
+            "lawCode": "LDB",
+            "articleNumber": "6"
+          },
+          {
+            "entity": "http://example.org/legal-qa#ThoiKyQuyHoachKetCauHaTangDuongBo",
+            "entityLabel": "thời kỳ quy hoạch kết cấu hạ tầng đường bộ",
+            "subjectLabel": "thời kỳ quy hoạch kết cấu hạ tầng đường bộ",
+            "relationName": "dinhNghia",
+            "objectLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "lawCode": "LDB",
+            "articleNumber": "5"
+          }
+        ],
+        "error": null
+      },
+      "request_error": null
+    },
+    {
+      "id": "legal_correctness_1",
+      "question": "Điều 5 Luật Đường bộ quy định về điều kiện lái xe?",
+      "checks": {
+        "request_ok": true,
+        "success_match": true,
+        "legal_correctness": false,
+        "completeness": true,
+        "no_hallucination": true
+      },
+      "strict_pass": false,
+      "details": {
+        "pred_success": true,
+        "legal_correctness": true,
+        "completeness": true,
+        "answer_length": 470,
+        "has_hallucination": false
+      },
+      "prediction": {
+        "intent": "ASK_ARTICLE_CONTENT",
+        "success": true,
+        "message": "OK",
+        "endpoint": "http://fuseki:3030/legalqa/query",
+        "answer": "Trích dẫn điều luật: Luật Đường bộ, Điều 5.\nNội dung liên quan:\n- Bộ Giao thông vận tải → 10 năm, tầm nhìn từ 20 năm đến 30 năm\n- Chính phủ → 10 năm, tầm nhìn từ 20 năm đến 30 năm\n- Nội dung về phát triển đường bộ đô thị → 10 năm, tầm nhìn từ 20 năm đến 30 năm\n- Quy hoạch kết cấu hạ tầng đường bộ → 10 năm, tầm nhìn từ 20 năm đến 30 năm\n- Quy hoạch mạng lưới đường bộ → 10 năm, tầm nhìn từ 20 năm đến 30 năm\nThực thể được nhắc tới: 10 năm, tầm nhìn từ 20 năm đến 30 năm",
+        "result_count": 100
+      },
+      "raw_response": {
+        "success": true,
+        "message": "OK",
+        "question": "Điều 5 Luật Đường bộ quy định về điều kiện lái xe?",
+        "questionNorm": "dieu 5 luat duong bo quy dinh ve dieu kien lai xe",
+        "intent": "ASK_ARTICLE_CONTENT",
+        "entities": {
+          "question_norm": "dieu 5 luat duong bo quy dinh ve dieu kien lai xe",
+          "article": "5",
+          "law_code": "LDB",
+          "law_label": "Luật Đường bộ",
+          "entity_key": "duong bo",
+          "entity_label": "đường bộ",
+          "domain": "LDB",
+          "entity_hints": [
+            "DuongBo"
+          ]
+        },
+        "endpoint": "http://fuseki:3030/legalqa/query",
+        "sparql": "PREFIX legal: <http://example.org/legal-qa#>\nPREFIX rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>\nSELECT DISTINCT ?articleNumber ?articleLabel ?lawCode ?entityLabel ?rawS ?rawO ?clauseNumber ?pointNumber\nWHERE {\n    ?article rdf:type legal:Article ;\n             legal:articleNumber ?articleNumber .\n    FILTER(?articleNumber = \"5\")\n\n    OPTIONAL { ?article legal:label ?articleLabel . }\n    OPTIONAL { ?article legal:rawSubject ?rawS . }\n    OPTIONAL { ?article legal:rawObject ?rawO . }\n    OPTIONAL { ?article legal:clauseNumber ?clauseNumber . }\n    OPTIONAL { ?article legal:pointNumber ?pointNumber . }\n    OPTIONAL {\n        ?law legal:hasChapter/legal:hasArticle ?article ;\n             legal:lawCode ?lawCode .\n    }\n    OPTIONAL {\n        ?article legal:mentionsEntity ?entity .\n        ?entity legal:label ?entityLabel .\n    }\n    FILTER(?lawCode = \"LDB\")\n    \n    \n}\nORDER BY ?lawCode ?clauseNumber ?pointNumber ?entityLabel\nLIMIT 100\n",
+        "answer": "Trích dẫn điều luật: Luật Đường bộ, Điều 5.\nNội dung liên quan:\n- Bộ Giao thông vận tải → 10 năm, tầm nhìn từ 20 năm đến 30 năm\n- Chính phủ → 10 năm, tầm nhìn từ 20 năm đến 30 năm\n- Nội dung về phát triển đường bộ đô thị → 10 năm, tầm nhìn từ 20 năm đến 30 năm\n- Quy hoạch kết cấu hạ tầng đường bộ → 10 năm, tầm nhìn từ 20 năm đến 30 năm\n- Quy hoạch mạng lưới đường bộ → 10 năm, tầm nhìn từ 20 năm đến 30 năm\nThực thể được nhắc tới: 10 năm, tầm nhìn từ 20 năm đến 30 năm",
+        "results": [
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Bộ Giao thông vận tải",
+            "rawO": "10 năm, tầm nhìn từ 20 năm đến 30 năm"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Chính phủ",
+            "rawO": "10 năm, tầm nhìn từ 20 năm đến 30 năm"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Nội dung về phát triển đường bộ đô thị",
+            "rawO": "10 năm, tầm nhìn từ 20 năm đến 30 năm"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Quy hoạch kết cấu hạ tầng đường bộ",
+            "rawO": "10 năm, tầm nhìn từ 20 năm đến 30 năm"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Quy hoạch mạng lưới đường bộ",
+            "rawO": "10 năm, tầm nhìn từ 20 năm đến 30 năm"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Thời kỳ quy hoạch kết cấu hạ tầng đường bộ",
+            "rawO": "10 năm, tầm nhìn từ 20 năm đến 30 năm"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Việc lập, thẩm định, phê duyệt, điều chỉnh quy hoạch mạng lưới đường bộ",
+            "rawO": "10 năm, tầm nhìn từ 20 năm đến 30 năm"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "giao thông đường bộ",
+            "rawO": "10 năm, tầm nhìn từ 20 năm đến 30 năm"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "đường bộ",
+            "rawO": "10 năm, tầm nhìn từ 20 năm đến 30 năm"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Ủy ban nhân dân cấp tỉnh",
+            "rawO": "10 năm, tầm nhìn từ 20 năm đến 30 năm"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Bộ Giao thông vận tải",
+            "rawO": "các phương thức vận tải khác"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Chính phủ",
+            "rawO": "các phương thức vận tải khác"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Nội dung về phát triển đường bộ đô thị",
+            "rawO": "các phương thức vận tải khác"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Quy hoạch kết cấu hạ tầng đường bộ",
+            "rawO": "các phương thức vận tải khác"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Quy hoạch mạng lưới đường bộ",
+            "rawO": "các phương thức vận tải khác"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Thời kỳ quy hoạch kết cấu hạ tầng đường bộ",
+            "rawO": "các phương thức vận tải khác"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Việc lập, thẩm định, phê duyệt, điều chỉnh quy hoạch mạng lưới đường bộ",
+            "rawO": "các phương thức vận tải khác"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "giao thông đường bộ",
+            "rawO": "các phương thức vận tải khác"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "đường bộ",
+            "rawO": "các phương thức vận tải khác"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Ủy ban nhân dân cấp tỉnh",
+            "rawO": "các phương thức vận tải khác"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Bộ Giao thông vận tải",
+            "rawO": "các đô thị, địa bàn, khu vực, bến xe"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Chính phủ",
+            "rawO": "các đô thị, địa bàn, khu vực, bến xe"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Nội dung về phát triển đường bộ đô thị",
+            "rawO": "các đô thị, địa bàn, khu vực, bến xe"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Quy hoạch kết cấu hạ tầng đường bộ",
+            "rawO": "các đô thị, địa bàn, khu vực, bến xe"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Quy hoạch mạng lưới đường bộ",
+            "rawO": "các đô thị, địa bàn, khu vực, bến xe"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Thời kỳ quy hoạch kết cấu hạ tầng đường bộ",
+            "rawO": "các đô thị, địa bàn, khu vực, bến xe"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Việc lập, thẩm định, phê duyệt, điều chỉnh quy hoạch mạng lưới đường bộ",
+            "rawO": "các đô thị, địa bàn, khu vực, bến xe"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "giao thông đường bộ",
+            "rawO": "các đô thị, địa bàn, khu vực, bến xe"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "đường bộ",
+            "rawO": "các đô thị, địa bàn, khu vực, bến xe"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Ủy ban nhân dân cấp tỉnh",
+            "rawO": "các đô thị, địa bàn, khu vực, bến xe"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Bộ Giao thông vận tải",
+            "rawO": "công bố công khai"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Chính phủ",
+            "rawO": "công bố công khai"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Nội dung về phát triển đường bộ đô thị",
+            "rawO": "công bố công khai"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Quy hoạch kết cấu hạ tầng đường bộ",
+            "rawO": "công bố công khai"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Quy hoạch mạng lưới đường bộ",
+            "rawO": "công bố công khai"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Thời kỳ quy hoạch kết cấu hạ tầng đường bộ",
+            "rawO": "công bố công khai"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Việc lập, thẩm định, phê duyệt, điều chỉnh quy hoạch mạng lưới đường bộ",
+            "rawO": "công bố công khai"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "giao thông đường bộ",
+            "rawO": "công bố công khai"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "đường bộ",
+            "rawO": "công bố công khai"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Ủy ban nhân dân cấp tỉnh",
+            "rawO": "công bố công khai"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Bộ Giao thông vận tải",
+            "rawO": "giải pháp thực hiện quy hoạch"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Chính phủ",
+            "rawO": "giải pháp thực hiện quy hoạch"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Nội dung về phát triển đường bộ đô thị",
+            "rawO": "giải pháp thực hiện quy hoạch"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Quy hoạch kết cấu hạ tầng đường bộ",
+            "rawO": "giải pháp thực hiện quy hoạch"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Quy hoạch mạng lưới đường bộ",
+            "rawO": "giải pháp thực hiện quy hoạch"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Thời kỳ quy hoạch kết cấu hạ tầng đường bộ",
+            "rawO": "giải pháp thực hiện quy hoạch"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Việc lập, thẩm định, phê duyệt, điều chỉnh quy hoạch mạng lưới đường bộ",
+            "rawO": "giải pháp thực hiện quy hoạch"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "giao thông đường bộ",
+            "rawO": "giải pháp thực hiện quy hoạch"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "đường bộ",
+            "rawO": "giải pháp thực hiện quy hoạch"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Ủy ban nhân dân cấp tỉnh",
+            "rawO": "giải pháp thực hiện quy hoạch"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Bộ Giao thông vận tải",
+            "rawO": "hệ thống đô thị, khu kinh tế, khu công nghiệp"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Chính phủ",
+            "rawO": "hệ thống đô thị, khu kinh tế, khu công nghiệp"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Nội dung về phát triển đường bộ đô thị",
+            "rawO": "hệ thống đô thị, khu kinh tế, khu công nghiệp"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Quy hoạch kết cấu hạ tầng đường bộ",
+            "rawO": "hệ thống đô thị, khu kinh tế, khu công nghiệp"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Quy hoạch mạng lưới đường bộ",
+            "rawO": "hệ thống đô thị, khu kinh tế, khu công nghiệp"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Thời kỳ quy hoạch kết cấu hạ tầng đường bộ",
+            "rawO": "hệ thống đô thị, khu kinh tế, khu công nghiệp"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Việc lập, thẩm định, phê duyệt, điều chỉnh quy hoạch mạng lưới đường bộ",
+            "rawO": "hệ thống đô thị, khu kinh tế, khu công nghiệp"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "giao thông đường bộ",
+            "rawO": "hệ thống đô thị, khu kinh tế, khu công nghiệp"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "đường bộ",
+            "rawO": "hệ thống đô thị, khu kinh tế, khu công nghiệp"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Ủy ban nhân dân cấp tỉnh",
+            "rawO": "hệ thống đô thị, khu kinh tế, khu công nghiệp"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Bộ Giao thông vận tải",
+            "rawO": "kết nối phương thức vận tải đường bộ với các phương thức vận tải khác"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Chính phủ",
+            "rawO": "kết nối phương thức vận tải đường bộ với các phương thức vận tải khác"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Nội dung về phát triển đường bộ đô thị",
+            "rawO": "kết nối phương thức vận tải đường bộ với các phương thức vận tải khác"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Quy hoạch kết cấu hạ tầng đường bộ",
+            "rawO": "kết nối phương thức vận tải đường bộ với các phương thức vận tải khác"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Quy hoạch mạng lưới đường bộ",
+            "rawO": "kết nối phương thức vận tải đường bộ với các phương thức vận tải khác"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Thời kỳ quy hoạch kết cấu hạ tầng đường bộ",
+            "rawO": "kết nối phương thức vận tải đường bộ với các phương thức vận tải khác"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Việc lập, thẩm định, phê duyệt, điều chỉnh quy hoạch mạng lưới đường bộ",
+            "rawO": "kết nối phương thức vận tải đường bộ với các phương thức vận tải khác"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "giao thông đường bộ",
+            "rawO": "kết nối phương thức vận tải đường bộ với các phương thức vận tải khác"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "đường bộ",
+            "rawO": "kết nối phương thức vận tải đường bộ với các phương thức vận tải khác"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Ủy ban nhân dân cấp tỉnh",
+            "rawO": "kết nối phương thức vận tải đường bộ với các phương thức vận tải khác"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Bộ Giao thông vận tải",
+            "rawO": "làm cơ sở để định hướng lập quy hoạch kết cấu hạ tầng đường bộ"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Chính phủ",
+            "rawO": "làm cơ sở để định hướng lập quy hoạch kết cấu hạ tầng đường bộ"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Nội dung về phát triển đường bộ đô thị",
+            "rawO": "làm cơ sở để định hướng lập quy hoạch kết cấu hạ tầng đường bộ"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Quy hoạch kết cấu hạ tầng đường bộ",
+            "rawO": "làm cơ sở để định hướng lập quy hoạch kết cấu hạ tầng đường bộ"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Quy hoạch mạng lưới đường bộ",
+            "rawO": "làm cơ sở để định hướng lập quy hoạch kết cấu hạ tầng đường bộ"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Thời kỳ quy hoạch kết cấu hạ tầng đường bộ",
+            "rawO": "làm cơ sở để định hướng lập quy hoạch kết cấu hạ tầng đường bộ"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Việc lập, thẩm định, phê duyệt, điều chỉnh quy hoạch mạng lưới đường bộ",
+            "rawO": "làm cơ sở để định hướng lập quy hoạch kết cấu hạ tầng đường bộ"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "giao thông đường bộ",
+            "rawO": "làm cơ sở để định hướng lập quy hoạch kết cấu hạ tầng đường bộ"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "đường bộ",
+            "rawO": "làm cơ sở để định hướng lập quy hoạch kết cấu hạ tầng đường bộ"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Ủy ban nhân dân cấp tỉnh",
+            "rawO": "làm cơ sở để định hướng lập quy hoạch kết cấu hạ tầng đường bộ"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Bộ Giao thông vận tải",
+            "rawO": "lập quy hoạch mạng lưới đường bộ"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Chính phủ",
+            "rawO": "lập quy hoạch mạng lưới đường bộ"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Nội dung về phát triển đường bộ đô thị",
+            "rawO": "lập quy hoạch mạng lưới đường bộ"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Quy hoạch kết cấu hạ tầng đường bộ",
+            "rawO": "lập quy hoạch mạng lưới đường bộ"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Quy hoạch mạng lưới đường bộ",
+            "rawO": "lập quy hoạch mạng lưới đường bộ"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Thời kỳ quy hoạch kết cấu hạ tầng đường bộ",
+            "rawO": "lập quy hoạch mạng lưới đường bộ"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Việc lập, thẩm định, phê duyệt, điều chỉnh quy hoạch mạng lưới đường bộ",
+            "rawO": "lập quy hoạch mạng lưới đường bộ"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "giao thông đường bộ",
+            "rawO": "lập quy hoạch mạng lưới đường bộ"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "đường bộ",
+            "rawO": "lập quy hoạch mạng lưới đường bộ"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Ủy ban nhân dân cấp tỉnh",
+            "rawO": "lập quy hoạch mạng lưới đường bộ"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Bộ Giao thông vận tải",
+            "rawO": "nội dung, trình tự, thủ tục lập, thẩm định, phê duyệt và điều chỉnh quy hoạch kết cấu hạ tầng đường bộ"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Chính phủ",
+            "rawO": "nội dung, trình tự, thủ tục lập, thẩm định, phê duyệt và điều chỉnh quy hoạch kết cấu hạ tầng đường bộ"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Nội dung về phát triển đường bộ đô thị",
+            "rawO": "nội dung, trình tự, thủ tục lập, thẩm định, phê duyệt và điều chỉnh quy hoạch kết cấu hạ tầng đường bộ"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Quy hoạch kết cấu hạ tầng đường bộ",
+            "rawO": "nội dung, trình tự, thủ tục lập, thẩm định, phê duyệt và điều chỉnh quy hoạch kết cấu hạ tầng đường bộ"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Quy hoạch mạng lưới đường bộ",
+            "rawO": "nội dung, trình tự, thủ tục lập, thẩm định, phê duyệt và điều chỉnh quy hoạch kết cấu hạ tầng đường bộ"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Thời kỳ quy hoạch kết cấu hạ tầng đường bộ",
+            "rawO": "nội dung, trình tự, thủ tục lập, thẩm định, phê duyệt và điều chỉnh quy hoạch kết cấu hạ tầng đường bộ"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Việc lập, thẩm định, phê duyệt, điều chỉnh quy hoạch mạng lưới đường bộ",
+            "rawO": "nội dung, trình tự, thủ tục lập, thẩm định, phê duyệt và điều chỉnh quy hoạch kết cấu hạ tầng đường bộ"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "giao thông đường bộ",
+            "rawO": "nội dung, trình tự, thủ tục lập, thẩm định, phê duyệt và điều chỉnh quy hoạch kết cấu hạ tầng đường bộ"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "đường bộ",
+            "rawO": "nội dung, trình tự, thủ tục lập, thẩm định, phê duyệt và điều chỉnh quy hoạch kết cấu hạ tầng đường bộ"
+          },
+          {
+            "articleNumber": "5",
+            "lawCode": "LDB",
+            "entityLabel": "10 năm, tầm nhìn từ 20 năm đến 30 năm",
+            "rawS": "Ủy ban nhân dân cấp tỉnh",
+            "rawO": "nội dung, trình tự, thủ tục lập, thẩm định, phê duyệt và điều chỉnh quy hoạch kết cấu hạ tầng đường bộ"
+          }
+        ],
+        "error": null
+      },
+      "request_error": null
+    },
+    {
+      "id": "completeness_check_1",
+      "question": "Tóm tắt toàn bộ Luật Đường bộ?",
+      "checks": {
+        "request_ok": true,
+        "endpoint_match": false,
+        "answer_contains_match": true,
+        "legal_correctness": false,
+        "completeness": false,
+        "no_hallucination": true
+      },
+      "strict_pass": false,
+      "details": {
+        "pred_endpoint": "None",
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "legal_correctness_auto": false,
+        "completeness": false,
+        "answer_length": 150,
+        "has_hallucination": false
+      },
+      "prediction": {
+        "intent": "UNKNOWN",
+        "success": false,
+        "message": "LAW_OVERVIEW_UNSUPPORTED",
+        "endpoint": null,
+        "answer": "Hệ thống nhận ra bạn đang hỏi Luật Đường bộ nhưng hiện chỉ hỗ trợ chi tiết theo từng Điều/Khoản. Vui lòng nêu rõ số điều hoặc nội dung cụ thể bạn cần.",
+        "result_count": 0
+      },
+      "raw_response": {
+        "success": false,
+        "message": "LAW_OVERVIEW_UNSUPPORTED",
+        "question": "Tóm tắt toàn bộ Luật Đường bộ?",
+        "questionNorm": "tom tat toan bo luat duong bo",
+        "intent": "UNKNOWN",
+        "entities": {
+          "question_norm": "tom tat toan bo luat duong bo",
+          "law_code": "LDB",
+          "law_label": "Luật Đường bộ",
+          "entity_key": "duong bo",
+          "entity_label": "đường bộ",
+          "domain": "LDB",
+          "entity_hints": [
+            "DuongBo"
+          ]
+        },
+        "endpoint": null,
+        "sparql": null,
+        "answer": "Hệ thống nhận ra bạn đang hỏi Luật Đường bộ nhưng hiện chỉ hỗ trợ chi tiết theo từng Điều/Khoản. Vui lòng nêu rõ số điều hoặc nội dung cụ thể bạn cần.",
+        "results": [],
+        "error": null
+      },
+      "request_error": null
+    }
+  ]
+}
